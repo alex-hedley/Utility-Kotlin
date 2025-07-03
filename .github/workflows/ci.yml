@@ -28,7 +28,7 @@ jobs:
 
     - name: Fix permissions
       run: |
-        chmod -v -R +rX "build/dist/wasmJs/productionExecutable/" | while read line; do
+        chmod -v -R +rX "src/build/dist/wasmJs/productionExecutable/" | while read line; do
           echo "::warning title=Invalid file permissions automatically fixed::$line"
         done
       working-directory: src
