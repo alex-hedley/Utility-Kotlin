@@ -28,7 +28,7 @@ jobs:
 
     - name: Fix permissions
       run: |
-        chmod -v -R +rX "src/build/dist/wasmJs/productionExecutable/" | while read line; do
+        chmod -v -R +rX "src/composeApp/build/dist/wasmJs/productionExecutable/" | while read line; do
           echo "::warning title=Invalid file permissions automatically fixed::$line"
         done
       working-directory: src
@@ -36,7 +36,7 @@ jobs:
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: src/build/dist/wasmJs/productionExecutable/
+        path: src/composeApp/build/dist/wasmJs/productionExecutable/
 
   deploy:
     # Add a dependency to the build job
