@@ -11,29 +11,32 @@ jobs:
   build:
     name: Build Kotlin/Wasm
     runs-on: ubuntu-latest
+    
     steps:
-    - name: Set up JDK
-      uses: actions/setup-java@v2
+    - name: ⚙️ Set up JDK
+      uses: actions/setup-java@v4
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: 'temurin'
+        java-version: '21'
 
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
 
-    - name: Run Gradle Tasks
+    - name: ▶️ Run Gradle Tasks
       run: ./gradlew wasmJsBrowserDistribution
+      working-directory: src
 
     - name: Fix permissions
       run: |
         chmod -v -R +rX "build/dist/wasmJs/productionExecutable/" | while read line; do
           echo "::warning title=Invalid file permissions automatically fixed::$line"
         done
+      working-directory: src
 
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: build/dist/wasmJs/productionExecutable/
+        path: src/build/dist/wasmJs/productionExecutable/
 
   deploy:
     # Add a dependency to the build job
@@ -52,6 +55,6 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
