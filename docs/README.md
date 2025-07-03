@@ -1,5 +1,11 @@
 # Docs
 
+- [Deployment](DEPLOYMENT.md)
+
+---
+
+## Getting Started
+
 - https://kotlinlang.org/docs/wasm-get-started.html#before-you-start
 - https://kmp.jetbrains.com/?web=true&includeTests=true
 
