@@ -2,10 +2,13 @@
 # https://raw.githubusercontent.com/Kotlin/kotlin-wasm-browser-template/refs/heads/main/.github/workflows/ci.yml
 name: Publish Application on GitHub Pages
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-      
+    paths: 
+      - src/**
+
 jobs:
   # Build job
   build:
