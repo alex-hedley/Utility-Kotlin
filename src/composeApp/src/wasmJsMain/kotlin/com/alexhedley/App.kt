@@ -90,37 +90,43 @@ fun App() {
             TextField(textFieldDaysValue,
                 onValueChange = { textFieldDaysValue = it },
                 placeholder = { Text("Days") },
-                label = { Text("Days") }
+                label = { Text("Days") },
+                readOnly = true
             )
 
             TextField(textFieldHoursValue,
                 onValueChange = { textFieldHoursValue = it },
                 placeholder = { Text("Hours") },
-                label = { Text("Hours") }
+                label = { Text("Hours") },
+                readOnly = true
             )
 
             TextField(textFieldMinutesValue,
                 onValueChange = { textFieldMinutesValue = it },
                 placeholder = { Text("Minutes") },
-                label = { Text("Minutes") }
+                label = { Text("Minutes") },
+                readOnly = true
             )
 
             TextField(textFieldSecondsValue,
                 onValueChange = { textFieldSecondsValue = it },
                 placeholder = { Text("Seconds") },
-                label = { Text("Seconds") }
+                label = { Text("Seconds") },
+                readOnly = true
             )
 
             TextField(textFieldMillisValue,
                 onValueChange = { textFieldMillisValue = it },
                 placeholder = { Text("Millis") },
-                label = { Text("Millis") }
+                label = { Text("Millis") },
+                readOnly = true
             )
 
             TextField(textFieldNanosValue,
                 onValueChange = { textFieldNanosValue = it },
                 placeholder = { Text("Nanos") },
-                label = { Text("Nanos") }
+                label = { Text("Nanos") },
+                readOnly = true
             )
 
         }
