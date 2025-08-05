@@ -5,3 +5,19 @@ html, body {
     padding: 0;
     overflow: hidden;
 }
+
+footer {
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #6A52A0;
+    color: white;
+    text-align: center;
+}
+
+footer a:visited {
+    color: white;
+    text-decoration: none;
+}
