@@ -14,6 +14,33 @@
 
 - https://alex-hedley.github.io/Utility-Kotlin/
 
+## Features
+
+- Duration Parser
+<!-- - HTML Encode/Decode #8 -->
+<!-- - URL Encode #9 -->
+<!-- - HEX to RGB #10 -->
+<!-- - SQL Builder (IN Clause) #11 -->
+<!-- - Guid #12 -->
+<!-- - JSON Pretty #13 -->
+<!-- - XML Pretty #14 -->
+<!-- - SQL Formatter #15 -->
+  <!-- - SQL Builder (IN Clause) -->
+  <!-- - SQL LIKE -->
+  <!-- - SQL IN - Filter Duplicates -->
+<!-- - Remove whitespace #16 -->
+<!-- - String Convert #17 -->
+<!-- - Diff #18 -->
+<!-- - Binary #19 -->
+<!-- - Epoch Converter #20 -->
+<!-- - Ascii Checker #21 -->
+<!-- - kb - mb - gb converter #22 -->
+<!-- - time converter #23 -->
+<!-- - MD5 #24 -->
+<!-- - Hidden Character Finder #25 -->
+<!-- - Luhn Checker #26 -->
+<!-- - Unicode #27 -->
+
 ## src
 
 - [src](src/README.md)
