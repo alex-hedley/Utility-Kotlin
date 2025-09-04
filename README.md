@@ -40,6 +40,8 @@
 <!-- - Luhn Checker #26 -->
 <!-- - Unicode #27 -->
 
+![Utility - DurationParser](docs/images/Utility-withDurationParser.png "Utility - DurationParser")
+
 ## src
 
 - [src](src/README.md)
