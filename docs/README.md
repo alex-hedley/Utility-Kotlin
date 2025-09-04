@@ -2,6 +2,7 @@
 
 - [Articles](ARTICLES.md)
 - [Deployment](DEPLOYMENT.md)
+- [Acknowledgements](ACKNOWLEDGEMENTS.md)
 
 ---
 
@@ -9,6 +10,10 @@
 
 - https://kotlinlang.org/docs/wasm-get-started.html#before-you-start
 - https://kmp.jetbrains.com/?web=true&includeTests=true
+
+### wasm
+
+- ▶️[wasm.run.xml](../src/.run/wasm.run.xml)
 
 In wasmdemo | Tasks | kotlin browser, select and run the wasmJsBrowserDevelopmentRun task.
 
@@ -20,6 +25,10 @@ Opens
 
 - http://localhost:8081
 - http://localhost:8080
+
+---
+
+- ▶️[Distribution.run.xml](../src/.run/Distribution.run.xml)
 
 In wasmdemo | Tasks | kotlin browser, select and run the wasmJsBrowserDistribution task.
 
@@ -39,3 +48,11 @@ Run a server
 `python3 -m http.server -b 127.0.0.1`
 
 - http://localhost:8000
+
+### Desktop
+
+- ▶️[Desktop.run.xml](../src/.run/Desktop.run.xml)
+
+`./gradlew run`
+
+`./gradlew run -t`
