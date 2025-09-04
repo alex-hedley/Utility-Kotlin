@@ -11,5 +11,6 @@ fun App() {
 
     MaterialTheme {
         DurationParserView()
+//        OutlookExample()
     }
 }

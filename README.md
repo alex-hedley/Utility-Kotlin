@@ -25,7 +25,6 @@
 <!-- - JSON Pretty #13 -->
 <!-- - XML Pretty #14 -->
 <!-- - SQL Formatter #15 -->
-  <!-- - SQL Builder (IN Clause) -->
   <!-- - SQL LIKE -->
   <!-- - SQL IN - Filter Duplicates -->
 <!-- - Remove whitespace #16 -->
