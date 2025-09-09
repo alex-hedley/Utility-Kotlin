@@ -21,7 +21,7 @@
 - URL Encode #9
 <!-- - HEX to RGB #10 -->
 <!-- - SQL Builder (IN Clause) #11 -->
-<!-- - Guid #12 -->
+- Guid #12
 <!-- - JSON Pretty #13 -->
 <!-- - XML Pretty #14 -->
 <!-- - SQL Formatter #15 -->
