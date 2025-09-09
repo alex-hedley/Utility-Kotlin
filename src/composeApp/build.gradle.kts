@@ -111,18 +111,6 @@ kotlin {
 //    debugImplementation(compose.uiTooling)
 //}
 
-//compose.desktop {
-//    application {
-//        mainClass = "com.alexhedley.MainKt"
-//
-//        nativeDistributions {
-//            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-//            packageName = "com.alexhedley"
-//            packageVersion = "1.0.0"
-//        }
-//    }
-//}
-
 compose.desktop {
     application {
         mainClass = "com.alexhedley.MainKt"
