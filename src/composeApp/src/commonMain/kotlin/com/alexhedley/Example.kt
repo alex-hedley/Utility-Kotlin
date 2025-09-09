@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -61,11 +62,17 @@ fun Example() {
                     Spacer(modifier = Modifier.height(16.dp))
                 },
                 content = {
+                    // Duration Parser
                     NavRailItem(
                         icon = Icons.Default.Adjust,
-
                         isSelected = selectedNavItem == 0,
                         onClick = { selectedNavItem = 0 }
+                    )
+                    // URL Encode
+                    NavRailItem(
+                        icon = Icons.Default.Code,
+                        isSelected = selectedNavItem == 1,
+                        onClick = { selectedNavItem = 1 }
                     )
                 },
                 footer = {
@@ -106,7 +113,12 @@ fun Example() {
                     color = MaterialTheme.colorScheme.background,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    DurationParserView()
+                    when (selectedNavItem) {
+                        0 -> DurationParserView()
+                        1 -> UrlEncodeView()
+                        else -> App()
+                    }
+
                 }
             }
         },

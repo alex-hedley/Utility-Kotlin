@@ -1,5 +1,6 @@
 # Docs
 
+- [Progress](PROGRESS.md)
 - [Articles](ARTICLES.md)
 - [Deployment](DEPLOYMENT.md)
 - [Acknowledgements](ACKNOWLEDGEMENTS.md)
