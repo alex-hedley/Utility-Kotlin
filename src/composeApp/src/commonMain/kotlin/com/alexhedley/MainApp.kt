@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexhedley.components.DurationParserView
+import com.alexhedley.components.GuidView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -76,6 +77,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 1,
                         onClick = { selectedNavItem = 1 }
                     )
+                    // Guid
+                    NavRailItem(
+                        icon = Icons.Default.Code,
+                        isSelected = selectedNavItem == 2,
+                        onClick = { selectedNavItem = 2 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -118,6 +125,7 @@ fun MainApp() {
                     when (selectedNavItem) {
                         0 -> DurationParserView()
                         1 -> UrlEncodeView()
+                        2 -> GuidView()
                         else -> App()
                     }
 
