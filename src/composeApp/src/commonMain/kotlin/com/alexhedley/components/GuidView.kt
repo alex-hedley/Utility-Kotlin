@@ -30,6 +30,7 @@ fun GuidView() {
     val clipboard = LocalClipboard.current
     var guid by remember { mutableStateOf("") }
     guid = Uuid.random().toString()
+    var guidZero by remember { mutableStateOf("00000000-0000-0000-0000-000000000000") }
 
     MaterialTheme {
         Column(
@@ -46,9 +47,35 @@ fun GuidView() {
             Row() {
                 Column() {
                     TextField(
+                        guidZero,
+                        onValueChange = { },
+                        placeholder = { Text(guidZero) },
+                        label = { Text("Zero") },
+                        readOnly = true
+                    )
+                }
+                Column() {
+                    Button(
+                        onClick = {
+                            // https://youtrack.jetbrains.com/issue/CMP-7624
+//                            clipboard.setText(AnnotatedString((guid)))
+//                            clipboard.getText()?.text?.let {
+//                                guid = it
+//                            }
+                        },
+                        enabled = false
+                    ){
+                        Text("Copy")
+                    }
+                }
+            }
+
+            Row() {
+                Column() {
+                    TextField(
                         guid,
                         onValueChange = { guid = it },
-                        placeholder = { Text("00000000-0000-0000-0000-000000000000") },
+                        placeholder = { Text(guidZero) },
                         label = { Text("New") }
                     )
                 }
@@ -60,7 +87,8 @@ fun GuidView() {
 //                            clipboard.getText()?.text?.let {
 //                                guid = it
 //                            }
-                        }
+                        },
+                        enabled = false
                     ){
                         Text("Copy")
                     }
