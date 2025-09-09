@@ -131,6 +131,15 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.alexhedley.composedesktop"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.icns"))
+            }
+            windows {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.png"))
+            }
         }
     }
 }
