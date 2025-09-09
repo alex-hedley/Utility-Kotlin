@@ -39,6 +39,8 @@
 <!-- - Hidden Character Finder #25 -->
 <!-- - Luhn Checker #26 -->
 <!-- - Unicode #27 -->
+<!-- - String Tools - Regular Expression #35 -->
+- String Tools - Base64 Encode/Decode #36
 
 [Progress](docs/PROGRESS.md)
 

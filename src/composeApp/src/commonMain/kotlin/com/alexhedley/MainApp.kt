@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Abc
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.alexhedley.components.Base64View
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.UrlEncodeView
@@ -83,6 +85,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 2,
                         onClick = { selectedNavItem = 2 }
                     )
+                    // Base64
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 3,
+                        onClick = { selectedNavItem = 3 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -126,6 +134,7 @@ fun MainApp() {
                         0 -> DurationParserView()
                         1 -> UrlEncodeView()
                         2 -> GuidView()
+                        3 -> Base64View()
                         else -> App()
                     }
 
