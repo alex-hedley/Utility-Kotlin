@@ -55,6 +55,7 @@ fun GuidView() {
                 Column() {
                     Button(
                         onClick = {
+                            // https://youtrack.jetbrains.com/issue/CMP-7624
 //                            clipboard.setText(AnnotatedString((guid)))
 //                            clipboard.getText()?.text?.let {
 //                                guid = it
