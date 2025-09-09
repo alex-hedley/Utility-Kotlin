@@ -23,6 +23,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.alexhedley.components.DurationParserView
+import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
 import net.tactware.composedesktop.scaffold.components.DesktopApplicationScaffold
@@ -37,7 +39,7 @@ import net.tactware.composedesktop.scaffold.state.rememberOptionalPanelState
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Example() {
+fun MainApp() {
     // State for the navigation panel
 
     // State for the selected navigation item

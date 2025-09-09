@@ -1,4 +1,4 @@
-package com.alexhedley
+package com.alexhedley.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

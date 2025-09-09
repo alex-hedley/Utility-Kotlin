@@ -13,8 +13,7 @@ fun main() = application {
     ) {
 //        App()
         AppTheme {
-//            OutlookExample()
-            Example()
+            MainApp()
         }
     }
 }
