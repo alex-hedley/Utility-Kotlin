@@ -18,7 +18,7 @@
 
 - Duration Parser
 <!-- - HTML Encode/Decode #8 -->
-<!-- - URL Encode #9 -->
+- URL Encode #9
 <!-- - HEX to RGB #10 -->
 <!-- - SQL Builder (IN Clause) #11 -->
 <!-- - Guid #12 -->
@@ -39,6 +39,8 @@
 <!-- - Hidden Character Finder #25 -->
 <!-- - Luhn Checker #26 -->
 <!-- - Unicode #27 -->
+
+[Progress](docs/PROGRESS.md)
 
 ![Utility - DurationParser](docs/images/Utility-withDurationParser.png "Utility - DurationParser")
 
