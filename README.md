@@ -42,12 +42,12 @@
 <!-- - String Tools - Regular Expression #35 -->
 - String Tools - Base64 Encode/Decode #36
 <!-- - TOTP Token Generator #38 -->
-<!-- - HEX to DEC #39 -->
+- HEX to DEC #39
 <!-- - SQL Formatter - Contains #41 -->
 
 [Progress](docs/PROGRESS.md)
 
-![Utility - DurationParser](docs/images/Utility-withDurationParser.png "Utility - DurationParser")
+![Utility](docs/images/Utility.png "Utility")
 
 ## src
 
