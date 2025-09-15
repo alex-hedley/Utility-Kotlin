@@ -41,6 +41,9 @@
 <!-- - Unicode #27 -->
 <!-- - String Tools - Regular Expression #35 -->
 - String Tools - Base64 Encode/Decode #36
+<!-- - TOTP Token Generator #38 -->
+<!-- - HEX to DEC #39 -->
+<!-- - SQL Formatter - Contains #41 -->
 
 [Progress](docs/PROGRESS.md)
 
