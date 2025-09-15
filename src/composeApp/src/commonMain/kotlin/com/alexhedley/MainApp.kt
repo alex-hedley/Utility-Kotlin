@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Abc
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Colorize
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,6 +30,7 @@ import com.alexhedley.components.Base64View
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
+import com.alexhedley.components.HexToRgbView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -105,6 +107,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 6,
                         onClick = { selectedNavItem = 6 }
                     )
+                    // HEX to RGB
+                    NavRailItem(
+                        icon = Icons.Default.Colorize,
+                        isSelected = selectedNavItem == 7,
+                        onClick = { selectedNavItem = 7 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -151,6 +159,7 @@ fun MainApp() {
                         3 -> Base64View()
                         5 -> AsciiView()
                         6 -> HTMLEncodeDecode()
+                        7 -> HexToRgbView()
                         else -> App()
                     }
 
