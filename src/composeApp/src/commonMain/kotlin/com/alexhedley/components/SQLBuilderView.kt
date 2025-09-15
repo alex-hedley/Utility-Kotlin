@@ -28,19 +28,19 @@ fun SQLBuilderView() {
 //        Spacer(modifier = Modifier.size(10.dp))
 
 //        Row() {
-//            SQLINClause()
+//            SQLINClauseView()
+//        }
+
+//        Spacer(modifier = Modifier.size(10.dp))
+
+//        Row() {
+//            SQLLikeView()
 //        }
 
 //        Spacer(modifier = Modifier.size(10.dp))
 
         Row() {
-            SQLLikeView()
+            SQLContainsView()
         }
-
-//        Spacer(modifier = Modifier.size(10.dp))
-
-//        Row() {
-//
-//        }
     }
 }
