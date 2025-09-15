@@ -40,6 +40,7 @@ import com.alexhedley.components.HexToRgbView
 import com.alexhedley.components.LuhnChecker
 import com.alexhedley.components.MD5View
 import com.alexhedley.components.MemoryConverterView
+import com.alexhedley.components.RegexView
 import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
 import com.alexhedley.components.StringConverterView
@@ -181,11 +182,17 @@ fun MainApp() {
 //                        isSelected = selectedNavItem == 16,
 //                        onClick = { selectedNavItem = 16 }
 //                    )
-                    // Unicode
+//                    // Unicode
+//                    NavRailItem(
+//                        icon = Icons.Default.Abc,
+//                        isSelected = selectedNavItem == 17,
+//                        onClick = { selectedNavItem = 17 }
+//                    )
+                    // Regular Expression
                     NavRailItem(
                         icon = Icons.Default.Abc,
-                        isSelected = selectedNavItem == 17,
-                        onClick = { selectedNavItem = 17 }
+                        isSelected = selectedNavItem == 18,
+                        onClick = { selectedNavItem = 18 }
                     )
                 },
                 footer = {
@@ -244,6 +251,7 @@ fun MainApp() {
                         15 -> MD5View()
                         16 -> LuhnChecker()
                         17 -> UnicodeView()
+                        18 -> RegexView()
                         else -> App()
                     }
 
