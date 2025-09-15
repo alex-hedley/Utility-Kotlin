@@ -98,7 +98,7 @@ fun RegexView() {
                         placeholder = { "" },
                         label = { Text("Output") },
                         singleLine = false,
-                        modifier = Modifier.fillMaxSize(),
+//                        modifier = Modifier.fillMaxSize(),
                     )
                 }
                 Column() {
@@ -114,6 +114,10 @@ fun RegexView() {
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.size(30.dp))
+
+            Text("Inspired from String from Regex Generator - https://onlinestringtools.com/generate-string-from-regex")
         }
     }
 }
