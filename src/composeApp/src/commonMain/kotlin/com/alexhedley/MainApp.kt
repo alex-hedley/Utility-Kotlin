@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
+import androidx.compose.material.icons.filled.LockClock
 import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.PunchClock
 import androidx.compose.material.icons.filled.Settings
@@ -39,6 +40,7 @@ import com.alexhedley.components.MemoryConverterView
 import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
 import com.alexhedley.components.StringConverterView
+import com.alexhedley.components.TimeConverterView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -157,6 +159,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 13,
                         onClick = { selectedNavItem = 13 }
                     )
+                    // Time
+                    NavRailItem(
+                        icon = Icons.Default.LockClock,
+                        isSelected = selectedNavItem == 14,
+                        onClick = { selectedNavItem = 14 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -210,6 +218,7 @@ fun MainApp() {
                         11 -> BinaryView()
                         12 -> EpochView()
                         13 -> MemoryConverterView()
+                        14 -> TimeConverterView()
                         else -> App()
                     }
 

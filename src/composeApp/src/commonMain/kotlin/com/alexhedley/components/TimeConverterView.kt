@@ -27,8 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MemoryConverterView() {
-    val defaultValue = "1030";
+fun TimeConverterView() {
+    val defaultValue = "60";
     var input by remember { mutableStateOf(defaultValue) }
     var output by remember { mutableStateOf("") }
 
@@ -41,7 +41,7 @@ fun MemoryConverterView() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("Memory Converter", style = MaterialTheme.typography.titleLarge)
+            Text("Time Converter", style = MaterialTheme.typography.titleLarge)
             Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
@@ -57,8 +57,8 @@ fun MemoryConverterView() {
                     TextField(
                         input,
                         onValueChange = { input = it },
-                        placeholder = { "Type in the memory amount you wish to convert..." },
-                        label = { Text("Input") },
+                        placeholder = { "Type in the time amount you wish to convert..." },
+                        label = { Text("Seconds") },
                         singleLine = false,
                     )
                 }
@@ -100,8 +100,8 @@ fun MemoryConverterView() {
                     TextField(
                         output,
                         onValueChange = { output = it },
-                        placeholder = { "Total" },
-                        label = { Text("1.0 KB") },
+                        placeholder = { "00:01:00:000" },
+                        label = { Text("hh:mm:ss:fff") },
                         singleLine = false,
                     )
                 }
