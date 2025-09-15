@@ -41,6 +41,7 @@
 <!-- - Unicode #27 -->
 <!-- - String Tools - Regular Expression #35 -->
 - String Tools - Base64 Encode/Decode #36
+- HEX to DEC #39
 
 [Progress](docs/PROGRESS.md)
 

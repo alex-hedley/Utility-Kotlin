@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.alexhedley.components.Base64View
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
+import com.alexhedley.components.HexToDecView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -91,6 +92,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 3,
                         onClick = { selectedNavItem = 3 }
                     )
+                    // HEX to DEC
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 4,
+                        onClick = { selectedNavItem = 4 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -135,6 +142,7 @@ fun MainApp() {
                         1 -> UrlEncodeView()
                         2 -> GuidView()
                         3 -> Base64View()
+                        4 -> HexToDecView()
                         else -> App()
                     }
 
