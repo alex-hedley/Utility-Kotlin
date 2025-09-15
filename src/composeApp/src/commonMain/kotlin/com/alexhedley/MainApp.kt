@@ -35,6 +35,7 @@ import com.alexhedley.components.BinaryView
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.EpochView
 import com.alexhedley.components.GuidView
+import com.alexhedley.components.HexToDecView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
 import com.alexhedley.components.LuhnChecker
@@ -109,6 +110,12 @@ fun MainApp() {
                         icon = Icons.Default.Abc,
                         isSelected = selectedNavItem == 3,
                         onClick = { selectedNavItem = 3 }
+                    )
+                    // HEX to DEC
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 4,
+                        onClick = { selectedNavItem = 4 }
                     )
 //                    // ASCII
 //                    NavRailItem(
@@ -238,6 +245,7 @@ fun MainApp() {
                         1 -> UrlEncodeView()
                         2 -> GuidView()
                         3 -> Base64View()
+                        4 -> HexToDecView()
                         5 -> AsciiView()
                         6 -> HTMLEncodeDecode()
                         7 -> HexToRgbView()
