@@ -29,6 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 
+@ExperimentalUnsignedTypes
 @Composable
 fun HexToDecView() {
     var hex by remember { mutableStateOf("12") }
@@ -97,7 +98,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { dec = "" },
+                        onClick = { hex = "" },
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = Color.White,
                             containerColor = Color.Red
@@ -119,7 +120,7 @@ fun HexToDecView() {
                         dec,
                         onValueChange = { dec = it },
                         placeholder = { "Type in the value you wish to convert..." },
-                        label = { Text("") },
+                        label = { Text("Dec") },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
                     )
                 }
@@ -128,7 +129,7 @@ fun HexToDecView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                hex = Int.toString(dec)
+                                hex = dec.toByte().toHexString()
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
