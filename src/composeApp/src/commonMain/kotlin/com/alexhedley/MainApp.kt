@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.alexhedley.components.AsciiView
 import com.alexhedley.components.Base64View
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
@@ -91,6 +92,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 3,
                         onClick = { selectedNavItem = 3 }
                     )
+                    // ASCII
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 5,
+                        onClick = { selectedNavItem = 5 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -135,6 +142,7 @@ fun MainApp() {
                         1 -> UrlEncodeView()
                         2 -> GuidView()
                         3 -> Base64View()
+                        5 -> AsciiView()
                         else -> App()
                     }
 
