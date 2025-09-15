@@ -120,10 +120,10 @@ compose.desktop {
             packageName = "com.alexhedley.composedesktop"
             packageVersion = "1.0.0"
             macOS {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.icns"))
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon_mac.icns"))
             }
             windows {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.ico"))
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/icon_web.ico"))
             }
             linux {
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/icon.png"))

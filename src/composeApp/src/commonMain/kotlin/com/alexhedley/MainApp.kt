@@ -2,19 +2,15 @@ package com.alexhedley
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Abc
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.Colorize
-import androidx.compose.material.icons.filled.LockClock
-import androidx.compose.material.icons.filled.Memory
-import androidx.compose.material.icons.filled.PunchClock
-import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -57,6 +53,10 @@ import net.tactware.composedesktop.scaffold.components.DesktopTopBar
 import net.tactware.composedesktop.scaffold.state.rememberNavigationPanelState
 import net.tactware.composedesktop.scaffold.state.rememberOptionalPanelState
 
+import org.jetbrains.compose.resources.painterResource
+import utility.composeapp.generated.resources.Res
+import utility.composeapp.generated.resources.icon
+
 /**
  * Example implementation of the Desktop Scaffold to test layout options.
  */
@@ -72,6 +72,8 @@ fun MainApp() {
         topBar = {
             DesktopTopBar(
                 title = {
+                    Image(painter = painterResource(Res.drawable.icon), contentDescription = null)
+                    Spacer(Modifier.width(16.dp))
                     Text("Utility")
                 },
             )
@@ -81,10 +83,10 @@ fun MainApp() {
         navigationRail = {
             DesktopNavigationRail(
                 header = {
-                    IconButton(onClick = { /* Menu action */ }) {
-                        Icon(Icons.Default.Add, contentDescription = "Menu")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
+//                    IconButton(onClick = { /* Menu action */ }) {
+//                        Icon(Icons.Default.Add, contentDescription = "Menu")
+//                    }
+//                    Spacer(modifier = Modifier.height(16.dp))
                 },
                 content = {
                     // Duration Parser
@@ -203,10 +205,10 @@ fun MainApp() {
 //                    )
                 },
                 footer = {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    IconButton(onClick = { /* Settings action */ }) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings")
-                    }
+//                    Spacer(modifier = Modifier.height(16.dp))
+//                    IconButton(onClick = { /* Settings action */ }) {
+//                        Icon(Icons.Default.Settings, contentDescription = "Settings")
+//                    }
                 },
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 width = 56.dp
