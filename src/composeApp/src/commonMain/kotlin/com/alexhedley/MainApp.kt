@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.alexhedley.components.AsciiView
 import com.alexhedley.components.Base64View
+import com.alexhedley.components.BinaryView
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
@@ -134,6 +135,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 10,
                         onClick = { selectedNavItem = 10 }
                     )
+                    // Binary
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 11,
+                        onClick = { selectedNavItem = 11 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -184,6 +191,7 @@ fun MainApp() {
                         8 -> SQLBuilderView()
                         9 -> RemoveWhitespaceView()
                         10 -> StringConverterView()
+                        11 -> BinaryView()
                         else -> App()
                     }
 
