@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
+import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.PunchClock
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,6 +35,7 @@ import com.alexhedley.components.EpochView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
+import com.alexhedley.components.MemoryConverterView
 import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
 import com.alexhedley.components.StringConverterView
@@ -149,6 +151,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 12,
                         onClick = { selectedNavItem = 12 }
                     )
+                    // Memory
+                    NavRailItem(
+                        icon = Icons.Default.Memory,
+                        isSelected = selectedNavItem == 13,
+                        onClick = { selectedNavItem = 13 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -201,6 +209,7 @@ fun MainApp() {
                         10 -> StringConverterView()
                         11 -> BinaryView()
                         12 -> EpochView()
+                        13 -> MemoryConverterView()
                         else -> App()
                     }
 
