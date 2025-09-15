@@ -28,6 +28,7 @@ import com.alexhedley.components.AsciiView
 import com.alexhedley.components.Base64View
 import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
+import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -98,6 +99,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 5,
                         onClick = { selectedNavItem = 5 }
                     )
+                    // HTML Encode / Decode
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 6,
+                        onClick = { selectedNavItem = 6 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -143,6 +150,7 @@ fun MainApp() {
                         2 -> GuidView()
                         3 -> Base64View()
                         5 -> AsciiView()
+                        6 -> HTMLEncodeDecode()
                         else -> App()
                     }
 
