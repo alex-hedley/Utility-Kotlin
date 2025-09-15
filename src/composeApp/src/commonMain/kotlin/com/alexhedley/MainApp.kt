@@ -188,12 +188,12 @@ fun MainApp() {
 //                        isSelected = selectedNavItem == 17,
 //                        onClick = { selectedNavItem = 17 }
 //                    )
-                    // Regular Expression
-                    NavRailItem(
-                        icon = Icons.Default.Abc,
-                        isSelected = selectedNavItem == 18,
-                        onClick = { selectedNavItem = 18 }
-                    )
+//                    // Regular Expression
+//                    NavRailItem(
+//                        icon = Icons.Default.Abc,
+//                        isSelected = selectedNavItem == 18,
+//                        onClick = { selectedNavItem = 18 }
+//                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
