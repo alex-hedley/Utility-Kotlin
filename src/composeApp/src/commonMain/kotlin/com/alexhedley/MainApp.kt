@@ -37,6 +37,7 @@ import com.alexhedley.components.EpochView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
+import com.alexhedley.components.LuhnChecker
 import com.alexhedley.components.MD5View
 import com.alexhedley.components.MemoryConverterView
 import com.alexhedley.components.RemoveWhitespaceView
@@ -167,11 +168,17 @@ fun MainApp() {
 //                        isSelected = selectedNavItem == 14,
 //                        onClick = { selectedNavItem = 14 }
 //                    )
-                    // MD5
+//                    // MD5
+//                    NavRailItem(
+//                        icon = Icons.Default.Security,
+//                        isSelected = selectedNavItem == 15,
+//                        onClick = { selectedNavItem = 15 }
+//                    )
+                    // Luhn Checker
                     NavRailItem(
                         icon = Icons.Default.Security,
-                        isSelected = selectedNavItem == 15,
-                        onClick = { selectedNavItem = 15 }
+                        isSelected = selectedNavItem == 16,
+                        onClick = { selectedNavItem = 16 }
                     )
                 },
                 footer = {
@@ -228,6 +235,7 @@ fun MainApp() {
                         13 -> MemoryConverterView()
                         14 -> TimeConverterView()
                         15 -> MD5View()
+                        16 -> LuhnChecker()
                         else -> App()
                     }
 
