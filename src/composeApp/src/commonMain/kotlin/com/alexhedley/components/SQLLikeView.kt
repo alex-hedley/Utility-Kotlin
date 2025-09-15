@@ -119,7 +119,7 @@ fun SQLLikeView() {
                 }
             }
 
-            // Parse
+            // Build
             Row() {
                 Column() {
                     Button(
@@ -130,7 +130,7 @@ fun SQLLikeView() {
                         },
                         enabled = false
                     ){
-                        Text("Parse")
+                        Text("Build")
                     }
                 }
             }

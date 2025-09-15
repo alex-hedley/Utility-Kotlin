@@ -30,7 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SQLINClause() {
+fun SQLINClauseView() {
     var input by remember { mutableStateOf("") }
     var output by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
