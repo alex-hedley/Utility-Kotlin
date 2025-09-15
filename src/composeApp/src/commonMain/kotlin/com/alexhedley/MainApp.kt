@@ -31,6 +31,7 @@ import com.alexhedley.components.DurationParserView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
+import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
 import com.alexhedley.components.UrlEncodeView
 
@@ -114,10 +115,17 @@ fun MainApp() {
                         isSelected = selectedNavItem == 7,
                         onClick = { selectedNavItem = 7 }
                     )
+                    // SQL Builder
                     NavRailItem(
                         icon = Icons.Default.Code,
                         isSelected = selectedNavItem == 8,
                         onClick = { selectedNavItem = 8 }
+                    )
+                    // Remove Whitespace
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 9,
+                        onClick = { selectedNavItem = 9 }
                     )
                 },
                 footer = {
@@ -167,6 +175,7 @@ fun MainApp() {
                         6 -> HTMLEncodeDecode()
                         7 -> HexToRgbView()
                         8 -> SQLBuilderView()
+                        9 -> RemoveWhitespaceView()
                         else -> App()
                     }
 
