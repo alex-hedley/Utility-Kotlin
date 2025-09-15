@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
+import androidx.compose.material.icons.filled.PunchClock
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,6 +30,7 @@ import com.alexhedley.components.AsciiView
 import com.alexhedley.components.Base64View
 import com.alexhedley.components.BinaryView
 import com.alexhedley.components.DurationParserView
+import com.alexhedley.components.EpochView
 import com.alexhedley.components.GuidView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
@@ -141,6 +143,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 11,
                         onClick = { selectedNavItem = 11 }
                     )
+                    // Epoch
+                    NavRailItem(
+                        icon = Icons.Default.PunchClock,
+                        isSelected = selectedNavItem == 12,
+                        onClick = { selectedNavItem = 12 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -192,6 +200,7 @@ fun MainApp() {
                         9 -> RemoveWhitespaceView()
                         10 -> StringConverterView()
                         11 -> BinaryView()
+                        12 -> EpochView()
                         else -> App()
                     }
 
