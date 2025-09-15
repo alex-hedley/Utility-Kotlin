@@ -44,6 +44,7 @@ import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
 import com.alexhedley.components.StringConverterView
 import com.alexhedley.components.TimeConverterView
+import com.alexhedley.components.UnicodeView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -174,11 +175,17 @@ fun MainApp() {
 //                        isSelected = selectedNavItem == 15,
 //                        onClick = { selectedNavItem = 15 }
 //                    )
-                    // Luhn Checker
+//                    // Luhn Checker
+//                    NavRailItem(
+//                        icon = Icons.Default.Security,
+//                        isSelected = selectedNavItem == 16,
+//                        onClick = { selectedNavItem = 16 }
+//                    )
+                    // Unicode
                     NavRailItem(
-                        icon = Icons.Default.Security,
-                        isSelected = selectedNavItem == 16,
-                        onClick = { selectedNavItem = 16 }
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 17,
+                        onClick = { selectedNavItem = 17 }
                     )
                 },
                 footer = {
@@ -236,6 +243,7 @@ fun MainApp() {
                         14 -> TimeConverterView()
                         15 -> MD5View()
                         16 -> LuhnChecker()
+                        17 -> UnicodeView()
                         else -> App()
                     }
 
