@@ -33,6 +33,7 @@ import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
 import com.alexhedley.components.RemoveWhitespaceView
 import com.alexhedley.components.SQLBuilderView
+import com.alexhedley.components.StringConverterView
 import com.alexhedley.components.UrlEncodeView
 
 import net.tactware.components.NavRailItem
@@ -127,6 +128,12 @@ fun MainApp() {
                         isSelected = selectedNavItem == 9,
                         onClick = { selectedNavItem = 9 }
                     )
+                    // String Converter
+                    NavRailItem(
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 10,
+                        onClick = { selectedNavItem = 10 }
+                    )
                 },
                 footer = {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -176,6 +183,7 @@ fun MainApp() {
                         7 -> HexToRgbView()
                         8 -> SQLBuilderView()
                         9 -> RemoveWhitespaceView()
+                        10 -> StringConverterView()
                         else -> App()
                     }
 
