@@ -39,7 +39,7 @@ fun DesktopNavigationRail(
     contentColor: Color = contentColorFor(backgroundColor),
     width: Dp = 56.dp,
     expanded: Boolean = false,
-    widthExpanded: Dp = 120.dp,
+    widthExpanded: Dp = 130.dp,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -56,7 +56,7 @@ fun DesktopNavigationRail(
 
             // Main content section (navigation items)
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.Start,
                 modifier = Modifier.weight(1f),
                 content = content
             )

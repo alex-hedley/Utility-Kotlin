@@ -112,7 +112,7 @@ fun MainApp() {
                         modifier = Modifier.padding(start = 8.dp)
                     ) {
                         Icon(
-                            imageVector = if (navigationRailState.isExpanded) Icons.Default.ChevronRight else Icons.Default.ChevronLeft,
+                            imageVector = Icons.Default.ChevronLeft,
                             contentDescription = "Toggle Panel",
                             modifier = Modifier.rotate(rotation)
                         )
