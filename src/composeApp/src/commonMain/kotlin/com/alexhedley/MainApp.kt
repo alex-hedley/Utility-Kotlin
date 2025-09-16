@@ -5,22 +5,18 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Abc
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
 import androidx.compose.material.icons.filled.LockClock
 import androidx.compose.material.icons.filled.Memory
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PunchClock
 import androidx.compose.material.icons.filled.Security
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -60,9 +56,9 @@ import net.tactware.composedesktop.scaffold.components.DesktopApplicationScaffol
 import net.tactware.composedesktop.scaffold.components.DesktopAreaScaffold
 import net.tactware.composedesktop.scaffold.components.DesktopNavigationRail
 import net.tactware.composedesktop.scaffold.components.DesktopTopBar
-import net.tactware.composedesktop.scaffold.state.rememberNavigationPanelState
+//import net.tactware.composedesktop.scaffold.state.rememberNavigationPanelState
 import net.tactware.composedesktop.scaffold.state.rememberNavigationRailState
-import net.tactware.composedesktop.scaffold.state.rememberOptionalPanelState
+//import net.tactware.composedesktop.scaffold.state.rememberOptionalPanelState
 
 import org.jetbrains.compose.resources.painterResource
 import utility.composeapp.generated.resources.Res
@@ -78,8 +74,8 @@ fun MainApp() {
 
     // State for the selected navigation item
     var selectedNavItem by remember { mutableStateOf(0) }
+    // State for the navigation rail
     val navigationRailState = rememberNavigationRailState(initialExpanded = false)
-
     val rotation by animateFloatAsState(
         targetValue = if (navigationRailState.isExpanded) 0f else 180f,
         animationSpec = tween(durationMillis = 300),
@@ -103,10 +99,6 @@ fun MainApp() {
                 width = 56.dp,
                 expanded = navigationRailState.isExpanded,
                 header = {
-//                    IconButton(onClick = { /* Menu action */ }) {
-//                        Icon(Icons.Default.Add, contentDescription = "Menu")
-//                    }
-//                    Spacer(modifier = Modifier.height(16.dp))
                     IconButton(
                         onClick = { navigationRailState.toggle() },
                         modifier = Modifier.padding(start = 8.dp)
@@ -266,8 +258,8 @@ fun MainApp() {
         // Main content implementation
         content = {
 
-            val navigationPanelState = rememberNavigationPanelState(initialExpanded = true)
-            val optionalPanelState = rememberOptionalPanelState(initialExpanded = true)
+//            val navigationPanelState = rememberNavigationPanelState(initialExpanded = true)
+//            val optionalPanelState = rememberOptionalPanelState(initialExpanded = true)
 
             DesktopAreaScaffold(
 //                navigationPanelState = navigationPanelState,
