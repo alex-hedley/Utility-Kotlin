@@ -11,6 +11,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Abc
 import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Colorize
+import androidx.compose.material.icons.filled.LockClock
+import androidx.compose.material.icons.filled.Memory
+import androidx.compose.material.icons.filled.PunchClock
+import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -89,120 +94,121 @@ fun MainApp() {
 //                    Spacer(modifier = Modifier.height(16.dp))
                 },
                 content = {
-                    // Duration Parser
                     NavRailItem(
+                        title = "Duration Parser",
                         icon = Icons.Default.Adjust,
                         isSelected = selectedNavItem == 0,
+                        expanded = false,
                         onClick = { selectedNavItem = 0 }
                     )
-                    // URL Encode
                     NavRailItem(
+                        title = "URL Encode",
                         icon = Icons.Default.Code,
                         isSelected = selectedNavItem == 1,
                         onClick = { selectedNavItem = 1 }
                     )
-                    // Guid
                     NavRailItem(
+                        title = "Guid",
                         icon = Icons.Default.Code,
                         isSelected = selectedNavItem == 2,
                         onClick = { selectedNavItem = 2 }
                     )
-                    // Base64
                     NavRailItem(
+                        title = "Base64",
                         icon = Icons.Default.Abc,
                         isSelected = selectedNavItem == 3,
                         onClick = { selectedNavItem = 3 }
                     )
-                    // HEX to DEC
                     NavRailItem(
+                        title = "Hex to DEC",
                         icon = Icons.Default.Abc,
                         isSelected = selectedNavItem == 4,
                         onClick = { selectedNavItem = 4 }
                     )
-//                    // ASCII
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 5,
-//                        onClick = { selectedNavItem = 5 }
-//                    )
-//                    // HTML Encode / Decode
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 6,
-//                        onClick = { selectedNavItem = 6 }
-//                    )
-//                    // HEX to RGB
-//                    NavRailItem(
-//                        icon = Icons.Default.Colorize,
-//                        isSelected = selectedNavItem == 7,
-//                        onClick = { selectedNavItem = 7 }
-//                    )
-//                    // SQL Builder
-//                    NavRailItem(
-//                        icon = Icons.Default.Code,
-//                        isSelected = selectedNavItem == 8,
-//                        onClick = { selectedNavItem = 8 }
-//                    )
-//                    // Remove Whitespace
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 9,
-//                        onClick = { selectedNavItem = 9 }
-//                    )
-//                    // String Converter
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 10,
-//                        onClick = { selectedNavItem = 10 }
-//                    )
-//                    // Binary
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 11,
-//                        onClick = { selectedNavItem = 11 }
-//                    )
-//                    // Epoch
-//                    NavRailItem(
-//                        icon = Icons.Default.PunchClock,
-//                        isSelected = selectedNavItem == 12,
-//                        onClick = { selectedNavItem = 12 }
-//                    )
-//                    // Memory
-//                    NavRailItem(
-//                        icon = Icons.Default.Memory,
-//                        isSelected = selectedNavItem == 13,
-//                        onClick = { selectedNavItem = 13 }
-//                    )
-//                    // Time
-//                    NavRailItem(
-//                        icon = Icons.Default.LockClock,
-//                        isSelected = selectedNavItem == 14,
-//                        onClick = { selectedNavItem = 14 }
-//                    )
-//                    // MD5
-//                    NavRailItem(
-//                        icon = Icons.Default.Security,
-//                        isSelected = selectedNavItem == 15,
-//                        onClick = { selectedNavItem = 15 }
-//                    )
-//                    // Luhn Checker
-//                    NavRailItem(
-//                        icon = Icons.Default.Security,
-//                        isSelected = selectedNavItem == 16,
-//                        onClick = { selectedNavItem = 16 }
-//                    )
-//                    // Unicode
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 17,
-//                        onClick = { selectedNavItem = 17 }
-//                    )
-//                    // Regular Expression
-//                    NavRailItem(
-//                        icon = Icons.Default.Abc,
-//                        isSelected = selectedNavItem == 18,
-//                        onClick = { selectedNavItem = 18 }
-//                    )
+                    NavRailItem(
+                        title = "ASCII",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 5,
+                        onClick = { selectedNavItem = 5 }
+                    )
+                    NavRailItem(
+                        title = "HTML Encode / Decode",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 6,
+                        onClick = { selectedNavItem = 6 }
+                    )
+                    NavRailItem(
+                        title = "HEX to RGB",
+                        icon = Icons.Default.Colorize,
+                        isSelected = selectedNavItem == 7,
+                        onClick = { selectedNavItem = 7 }
+                    )
+                    NavRailItem(
+                        title = "SQL Builder",
+                        icon = Icons.Default.Code,
+                        isSelected = selectedNavItem == 8,
+                        onClick = { selectedNavItem = 8 }
+                    )
+                    NavRailItem(
+                        title = "Remove Whitespace",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 9,
+                        onClick = { selectedNavItem = 9 }
+                    )
+                    NavRailItem(
+                        title = "String Converter",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 10,
+                        onClick = { selectedNavItem = 10 }
+                    )
+                    NavRailItem(
+                        title = "Binary",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 11,
+                        onClick = { selectedNavItem = 11 }
+                    )
+                    NavRailItem(
+                        title = "Epoch",
+                        icon = Icons.Default.PunchClock,
+                        isSelected = selectedNavItem == 12,
+                        onClick = { selectedNavItem = 12 }
+                    )
+                    NavRailItem(
+                        title = "Memory",
+                        icon = Icons.Default.Memory,
+                        isSelected = selectedNavItem == 13,
+                        onClick = { selectedNavItem = 13 }
+                    )
+                    NavRailItem(
+                        title = "Time",
+                        icon = Icons.Default.LockClock,
+                        isSelected = selectedNavItem == 14,
+                        onClick = { selectedNavItem = 14 }
+                    )
+                    NavRailItem(
+                        title = "MD5",
+                        icon = Icons.Default.Security,
+                        isSelected = selectedNavItem == 15,
+                        onClick = { selectedNavItem = 15 }
+                    )
+                    NavRailItem(
+                        title = "Luhn Checker",
+                        icon = Icons.Default.Security,
+                        isSelected = selectedNavItem == 16,
+                        onClick = { selectedNavItem = 16 }
+                    )
+                    NavRailItem(
+                        title = "Unicode",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 17,
+                        onClick = { selectedNavItem = 17 }
+                    )
+                    NavRailItem(
+                        title = "Regular Expression",
+                        icon = Icons.Default.Abc,
+                        isSelected = selectedNavItem == 18,
+                        onClick = { selectedNavItem = 18 }
+                    )
                 },
                 footer = {
 //                    Spacer(modifier = Modifier.height(16.dp))
@@ -211,7 +217,8 @@ fun MainApp() {
 //                    }
                 },
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                width = 56.dp
+                width = 56.dp,
+                expanded = false
             )
         },
 

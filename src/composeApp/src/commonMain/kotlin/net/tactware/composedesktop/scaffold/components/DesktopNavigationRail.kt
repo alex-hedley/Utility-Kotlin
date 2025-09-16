@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
  * @param backgroundColor Background color of the rail
  * @param contentColor Content color of the rail
  * @param width Width of the rail
+ * @param expanded Is the rail expanded
+ * @param widthExpanded Width of the rail when expanded
  * @param modifier Modifier for the rail
  */
 @Composable
@@ -36,12 +38,14 @@ fun DesktopNavigationRail(
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = contentColorFor(backgroundColor),
     width: Dp = 56.dp,
+    expanded: Boolean = false,
+    widthExpanded: Dp = 120.dp,
     modifier: Modifier = Modifier
 ) {
     Surface(
         color = backgroundColor,
         contentColor = contentColor,
-        modifier = modifier.width(width).fillMaxHeight()
+        modifier = modifier.width(if (expanded) widthExpanded else width).fillMaxHeight()
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
