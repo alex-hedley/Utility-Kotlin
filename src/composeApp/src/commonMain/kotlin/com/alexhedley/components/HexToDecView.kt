@@ -27,9 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import kotlin.io.encoding.Base64
 
-@ExperimentalUnsignedTypes
+@OptIn(ExperimentalUnsignedTypes::class)
 @Composable
 fun HexToDecView() {
     var hex by remember { mutableStateOf("12") }
@@ -44,7 +43,7 @@ fun HexToDecView() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("Base64", style = MaterialTheme.typography.titleLarge)
+            Text("HEX to DEC", style = MaterialTheme.typography.titleLarge)
 
             Spacer(modifier = Modifier.size(30.dp))
 
