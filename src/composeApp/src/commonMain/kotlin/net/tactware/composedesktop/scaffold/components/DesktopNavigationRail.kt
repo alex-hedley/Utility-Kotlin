@@ -39,7 +39,7 @@ fun DesktopNavigationRail(
     contentColor: Color = contentColorFor(backgroundColor),
     width: Dp = 56.dp,
     expanded: Boolean = false,
-    widthExpanded: Dp = 130.dp,
+    widthExpanded: Dp = 135.dp,
     modifier: Modifier = Modifier
 ) {
     Surface(

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Abc
 import androidx.compose.material.icons.filled.Adjust
+import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
@@ -50,6 +51,7 @@ import com.alexhedley.components.StringConverterView
 import com.alexhedley.components.TimeConverterView
 import com.alexhedley.components.UnicodeView
 import com.alexhedley.components.UrlEncodeView
+import com.alexhedley.models.Component
 
 import net.tactware.components.NavRailItem
 import net.tactware.composedesktop.scaffold.components.DesktopApplicationScaffold
@@ -82,6 +84,30 @@ fun MainApp() {
         label = "Toggle Icon Rotation"
     )
 
+    // Components
+    val components = listOf<Component>(
+        Component(0, "Applications", "", Icons.Default.Apps, { selectedNavItem = 0 }, ComponentsView(emptyList())),
+        Component(1, "Duration Parser", "", Icons.Default.Adjust, onClick = { selectedNavItem = 1 }, DurationParserView()),
+        Component(2, "URL Encode", "", Icons.Default.Code, onClick = { selectedNavItem = 2 }, UrlEncodeView()),
+        Component(3, "Guid", "", Icons.Default.Code, onClick = { selectedNavItem = 3 }, GuidView()),
+        Component(4, "Base64", "", Icons.Default.Abc, onClick = { selectedNavItem = 4 }, Base64View()),
+        Component(5, "HEX to DEC", "", Icons.Default.Abc, onClick = { selectedNavItem = 5 }, HexToDecView()),
+        Component(6, "ASCII", "", Icons.Default.Abc, onClick = { selectedNavItem = 6 }, AsciiView()),
+        Component(7, "HTML Encode / Decode", "", Icons.Default.Abc, onClick = { selectedNavItem = 7 }, HTMLEncodeDecode()),
+        Component(8, "HEX to RGB", "", Icons.Default.Colorize, onClick = { selectedNavItem = 8 }, HexToRgbView()),
+        Component(9, "SQL Builder", "", Icons.Default.Code, onClick = { selectedNavItem = 9 }, SQLBuilderView()),
+        Component(10, "Remove Whitespace", "", Icons.Default.Abc, onClick = { selectedNavItem = 10 }, RemoveWhitespaceView()),
+        Component(11, "String Converter", "", Icons.Default.Abc, onClick = { selectedNavItem = 11 }, StringConverterView()),
+        Component(12, "Binary", "", Icons.Default.Abc, onClick = { selectedNavItem = 12 }, BinaryView()),
+        Component(13, "Epoch", "", Icons.Default.PunchClock, onClick = { selectedNavItem = 13 }, EpochView()),
+        Component(14, "Memory", "", Icons.Default.Memory, onClick = { selectedNavItem = 14 }, MemoryConverterView()),
+        Component(15, "Time", "", Icons.Default.LockClock, onClick = { selectedNavItem = 15 }, TimeConverterView()),
+        Component(16, "MD5", "", Icons.Default.Security, onClick = { selectedNavItem = 16 }, MD5View()),
+        Component(17, "Luhn Checker", "", Icons.Default.Security, onClick = { selectedNavItem = 17 }, LuhnChecker()),
+        Component(18, "Unicode", "", Icons.Default.Abc, onClick = { selectedNavItem = 18 }, UnicodeView()),
+        Component(19, "Regex", "", Icons.Default.Abc, onClick = { selectedNavItem = 19 }, RegexView()),
+    )
+
     DesktopApplicationScaffold(
         topBar = {
             DesktopTopBar(
@@ -111,139 +137,15 @@ fun MainApp() {
                     }
                 },
                 content = {
-                    NavRailItem(
-                        title = "Duration Parser",
-                        icon = Icons.Default.Adjust,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 0,
-                        onClick = { selectedNavItem = 0 }
-                    )
-                    NavRailItem(
-                        title = "URL Encode",
-                        icon = Icons.Default.Code,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 1,
-                        onClick = { selectedNavItem = 1 }
-                    )
-                    NavRailItem(
-                        title = "Guid",
-                        icon = Icons.Default.Code,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 2,
-                        onClick = { selectedNavItem = 2 }
-                    )
-                    NavRailItem(
-                        title = "Base64",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 3,
-                        onClick = { selectedNavItem = 3 }
-                    )
-                    NavRailItem(
-                        title = "Hex to DEC",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 4,
-                        onClick = { selectedNavItem = 4 }
-                    )
-                    NavRailItem(
-                        title = "ASCII",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 5,
-                        onClick = { selectedNavItem = 5 }
-                    )
-                    NavRailItem(
-                        title = "HTML Encode / Decode",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 6,
-                        onClick = { selectedNavItem = 6 }
-                    )
-                    NavRailItem(
-                        title = "HEX to RGB",
-                        icon = Icons.Default.Colorize,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 7,
-                        onClick = { selectedNavItem = 7 }
-                    )
-                    NavRailItem(
-                        title = "SQL Builder",
-                        icon = Icons.Default.Code,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 8,
-                        onClick = { selectedNavItem = 8 }
-                    )
-                    NavRailItem(
-                        title = "Remove Whitespace",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 9,
-                        onClick = { selectedNavItem = 9 }
-                    )
-                    NavRailItem(
-                        title = "String Converter",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 10,
-                        onClick = { selectedNavItem = 10 }
-                    )
-                    NavRailItem(
-                        title = "Binary",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 11,
-                        onClick = { selectedNavItem = 11 }
-                    )
-                    NavRailItem(
-                        title = "Epoch",
-                        icon = Icons.Default.PunchClock,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 12,
-                        onClick = { selectedNavItem = 12 }
-                    )
-                    NavRailItem(
-                        title = "Memory",
-                        icon = Icons.Default.Memory,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 13,
-                        onClick = { selectedNavItem = 13 }
-                    )
-                    NavRailItem(
-                        title = "Time",
-                        icon = Icons.Default.LockClock,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 14,
-                        onClick = { selectedNavItem = 14 }
-                    )
-                    NavRailItem(
-                        title = "MD5",
-                        icon = Icons.Default.Security,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 15,
-                        onClick = { selectedNavItem = 15 }
-                    )
-                    NavRailItem(
-                        title = "Luhn Checker",
-                        icon = Icons.Default.Security,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 16,
-                        onClick = { selectedNavItem = 16 }
-                    )
-                    NavRailItem(
-                        title = "Unicode",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 17,
-                        onClick = { selectedNavItem = 17 }
-                    )
-                    NavRailItem(
-                        title = "Regular Expression",
-                        icon = Icons.Default.Abc,
-                        expanded = navigationRailState.isExpanded,
-                        isSelected = selectedNavItem == 18,
-                        onClick = { selectedNavItem = 18 }
-                    )
+                    components.forEach { component ->
+                        NavRailItem(
+                            title = component.name,
+                            icon = component.icon,
+                            expanded = navigationRailState.isExpanded,
+                            isSelected = selectedNavItem == component.id,
+                            onClick = { selectedNavItem = component.id }
+                        )
+                    }
                 },
                 footer = {
 //                    Spacer(modifier = Modifier.height(16.dp))
@@ -277,28 +179,29 @@ fun MainApp() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     when (selectedNavItem) {
-                        0 -> DurationParserView()
-                        1 -> UrlEncodeView()
-                        2 -> GuidView()
-                        3 -> Base64View()
-                        4 -> HexToDecView()
-                        5 -> AsciiView()
-                        6 -> HTMLEncodeDecode()
-                        7 -> HexToRgbView()
-                        8 -> SQLBuilderView()
-                        9 -> RemoveWhitespaceView()
-                        10 -> StringConverterView()
-                        11 -> BinaryView()
-                        12 -> EpochView()
-                        13 -> MemoryConverterView()
-                        14 -> TimeConverterView()
-                        15 -> MD5View()
-                        16 -> LuhnChecker()
-                        17 -> UnicodeView()
-                        18 -> RegexView()
+                        0 -> ComponentsView(components)
+                        1 -> DurationParserView()
+                        2 -> UrlEncodeView()
+                        3 -> GuidView()
+                        4 -> Base64View()
+                        5 -> HexToDecView()
+                        6 -> AsciiView()
+                        7 -> HTMLEncodeDecode()
+                        8 -> HexToRgbView()
+                        9 -> SQLBuilderView()
+                        10 -> RemoveWhitespaceView()
+                        11 -> StringConverterView()
+                        12 -> BinaryView()
+                        13 -> EpochView()
+                        14 -> MemoryConverterView()
+                        15 -> TimeConverterView()
+                        16 -> MD5View()
+                        17 -> LuhnChecker()
+                        18 -> UnicodeView()
+                        19 -> RegexView()
                         else -> App()
+//                        else -> components[selectedNavItem].view
                     }
-
                 }
             }
         },
