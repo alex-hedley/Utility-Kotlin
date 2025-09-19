@@ -14,10 +14,13 @@ import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Colorize
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LockClock
 import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.PunchClock
 import androidx.compose.material.icons.filled.Security
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -108,6 +111,21 @@ fun MainApp() {
         Component(19, "Regex", "", Icons.Default.Abc, onClick = { selectedNavItem = 19 }, Unit) //RegexView()),
     )
 
+    var isDialogOpen by remember { mutableStateOf(false) }
+    if (isDialogOpen) {
+        AlertDialog(
+            onDismissRequest = { },
+            confirmButton = {
+                Button(onClick = { isDialogOpen = false }) {
+                    Text("OK")
+                }
+            },
+//            icon = Icon(Icons.Default.Info, contentDescription = "About"),
+            title = { Text("Utility Kotlin") },
+            text = { Text("A collection of helpful utilities to make your day easier.") },
+        )
+    }
+
     DesktopApplicationScaffold(
         topBar = {
             DesktopTopBar(
@@ -116,6 +134,13 @@ fun MainApp() {
                     Spacer(Modifier.width(16.dp))
                     Text("Utility")
                 },
+                actions = {
+                    IconButton(onClick = {
+                        isDialogOpen = true
+                    }) {
+                        Icon(Icons.Default.Info, contentDescription = "About")
+                    }
+                }
             )
         },
 
