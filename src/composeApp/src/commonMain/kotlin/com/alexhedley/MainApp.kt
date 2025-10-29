@@ -113,16 +113,8 @@ fun MainApp() {
 
     var isDialogOpen by remember { mutableStateOf(false) }
     if (isDialogOpen) {
-        AlertDialog(
-            onDismissRequest = { },
-            confirmButton = {
-                Button(onClick = { isDialogOpen = false }) {
-                    Text("OK")
-                }
-            },
-//            icon = Icon(Icons.Default.Info, contentDescription = "About"),
-            title = { Text("Utility Kotlin") },
-            text = { Text("A collection of helpful utilities to make your day easier.") },
+        AboutView(
+            onDismiss = { isDialogOpen = false },
         )
     }
 
