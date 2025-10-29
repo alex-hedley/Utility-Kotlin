@@ -43,7 +43,7 @@ fun RegexView() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("Memory Converter", style = MaterialTheme.typography.titleLarge)
+            Text("Regex", style = MaterialTheme.typography.titleLarge)
             Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
