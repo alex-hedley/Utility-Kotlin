@@ -6,7 +6,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CopyAll
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -56,6 +62,21 @@ fun RemoveWhitespaceView() {
                         singleLine = false,
                     )
                 }
+                Column() {
+                    IconButton(
+                        onClick = { input = "" },
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = Color.White,
+                            containerColor = Color.Red
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
             }
 
             Row() {
@@ -64,9 +85,10 @@ fun RemoveWhitespaceView() {
                         onClick = {
 
                             // TODO
+                            output = input.replace(" ", "")
 
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Remove")
                     }
@@ -83,6 +105,33 @@ fun RemoveWhitespaceView() {
                         label = { Text("Output") },
                         singleLine = false,
                     )
+                }
+                Column() {
+                    IconButton(
+                        onClick = { output = "" },
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = Color.White,
+                            containerColor = Color.Red
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+                Column() {
+                    IconButton(
+                        onClick = {  },
+                        enabled = false,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CopyAll,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
                 }
             }
         }
