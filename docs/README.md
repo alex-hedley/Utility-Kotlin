@@ -4,6 +4,7 @@
 - [Articles](ARTICLES.md)
 - [Deployment](DEPLOYMENT.md)
 - [Acknowledgements](ACKNOWLEDGEMENTS.md)
+- [Contributors](CONTRIBUTORS.md)
 
 ---
 
