@@ -18,6 +18,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
 //import java.net.URLEncoder
@@ -88,7 +93,21 @@ fun UrlEncodeView() {
             Spacer(modifier = Modifier.size(30.dp))
 
 //            Text("Inspired from <a href=\"https://meyerweb.com/eric/tools/dencoder/\" target=\"_blank\">meyerweb URL Decoder/Encoder</a>")
-            Text("Inspired from https://meyerweb.com/eric/tools/dencoder/ - meyerweb URL Decoder/Encoder")
+
+            Text(
+                buildAnnotatedString {
+                    append("Inspired from ")
+                    withLink(
+                        LinkAnnotation.Url(
+                            "https://meyerweb.com/eric/tools/dencoder/",
+                            TextLinkStyles(SpanStyle(color = Color.Blue))
+                        )
+                    ) {
+                        append("https://meyerweb.com/eric/tools/dencoder/")
+                    }
+                    append(" - meyerweb URL Decoder/Encoder")
+                }
+            )
         }
     }
 }

@@ -25,6 +25,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -117,7 +122,19 @@ fun RegexView() {
 
             Spacer(modifier = Modifier.size(30.dp))
 
-            Text("Inspired from String from Regex Generator - https://onlinestringtools.com/generate-string-from-regex")
+            Text(
+                buildAnnotatedString {
+                    append("Inspired from String from Regex Generator - ")
+                    withLink(
+                        LinkAnnotation.Url(
+                            "https://onlinestringtools.com/generate-string-from-regex",
+                            TextLinkStyles(SpanStyle(color = Color.Blue))
+                        )
+                    ) {
+                        append("https://onlinestringtools.com/generate-string-from-regex")
+                    }
+                }
+            )
         }
     }
 }
