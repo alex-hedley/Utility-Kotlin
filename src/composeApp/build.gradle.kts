@@ -54,6 +54,8 @@ kotlin {
     }
     
     sourceSets {
+        val jvmTest by getting
+
 //        androidMain.dependencies {
 //            implementation(compose.preview)
 //            implementation(libs.androidx.activity.compose)
@@ -72,11 +74,18 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+//            implementation(kotlin("test"))
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            implementation(compose.uiTest)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+//        // Adds the desktop test dependency
+//        jvmTest.dependencies {
+//            implementation(compose.desktop.currentOs)
+//        }
     }
 }
 
@@ -90,6 +99,7 @@ kotlin {
 //        targetSdk = libs.versions.android.targetSdk.get().toInt()
 //        versionCode = 1
 //        versionName = "1.0"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 //    }
 //    packaging {
 //        resources {
@@ -105,10 +115,17 @@ kotlin {
 //        sourceCompatibility = JavaVersion.VERSION_11
 //        targetCompatibility = JavaVersion.VERSION_11
 //    }
+//    androidTarget {
+//        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+//        instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
+//        //...
+//    }
 //}
 
 //dependencies {
 //    debugImplementation(compose.uiTooling)
+//    androidTestImplementation("androidx.compose.ui:ui-test-junit4-android:1.9.4")
+//    debugImplementation("androidx.compose.ui:ui-test-manifest:1.9.4")
 //}
 
 compose.desktop {
