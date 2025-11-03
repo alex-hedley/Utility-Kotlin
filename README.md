@@ -44,6 +44,7 @@
 <!-- - TOTP Token Generator #38 -->
 - HEX to DEC #39
 <!-- - SQL Formatter - Contains #41 -->
+<!-- - JWT #61 -->
 
 [Progress](docs/PROGRESS.md)
 
