@@ -1,21 +1,19 @@
 package com.alexhedley
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +32,11 @@ fun ComponentsView(components: List<Component>) {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("Components", style = MaterialTheme.typography.titleLarge)
+            Text(
+                "Components",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(top = 16.dp)
+            )
 
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 128.dp),
@@ -52,20 +54,23 @@ fun ComponentsView(components: List<Component>) {
                     Card(
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), // contentColorFor()
                         modifier = Modifier
+                            .clickable(onClick = component.onClick)
                             .padding(4.dp)
-                            .fillMaxWidth(),
+//                            .fillMaxWidth()
+//                            .fillMaxHeight()
+                        ,
                         elevation =  CardDefaults.cardElevation(defaultElevation = 8.dp),
                     ) {
-                        Row() {
-                            IconButton(
-                                onClick = component.onClick,
-                                modifier = Modifier.size(40.dp),
-                            ) {
-                                Icon(
-                                    imageVector = component.icon,
-                                    contentDescription = component.description,
-                                )
-                            }
+                        Row(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(10.dp),
+                        ) {
+                            Icon(
+                                imageVector = component.icon,
+                                contentDescription = component.description,
+
+                            )
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Row(

@@ -196,7 +196,7 @@ fun MainApp() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     when (selectedNavItem) {
-                        0 -> ComponentsView(components)
+                        0 -> ComponentsView(components.subList(1, components.size))
                         1 -> DurationParserView()
                         2 -> UrlEncodeView()
                         3 -> GuidView()
