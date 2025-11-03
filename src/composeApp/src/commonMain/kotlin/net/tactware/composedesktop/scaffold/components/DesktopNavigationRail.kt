@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.contentColorFor
@@ -49,7 +51,9 @@ fun DesktopNavigationRail(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxHeight().padding(vertical = 8.dp)
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(vertical = 8.dp)
         ) {
             // Header section
             header()
@@ -57,7 +61,10 @@ fun DesktopNavigationRail(
             // Main content section (navigation items)
             Column(
                 horizontalAlignment = Alignment.Start,
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .verticalScroll(rememberScrollState())
+                ,
                 content = content
             )
 
