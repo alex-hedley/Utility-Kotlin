@@ -4,3 +4,5 @@
 ![URL Encode/Decode](images/URLEncodeDecode.png "URL Encode/Decode")
 ![Guids](images/Guids.png "Guids")
 ![Base64](images/Base64.png "Base64")
+
+![Info](images/Info.png "Info")

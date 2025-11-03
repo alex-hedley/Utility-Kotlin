@@ -1,6 +1,7 @@
 # Docs
 
 - [Progress](PROGRESS.md)
+- [Testing](TESTING.md)
 - [Articles](ARTICLES.md)
 - [Deployment](DEPLOYMENT.md)
 - [Acknowledgements](ACKNOWLEDGEMENTS.md)
@@ -8,7 +9,7 @@
 
 ---
 
-## 🔗 Useful Links
+## 🔗 Useful Links
 
 - https://foso.github.io/Jetpack-Compose-Playground/
 

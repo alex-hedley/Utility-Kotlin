@@ -48,6 +48,7 @@
 [Progress](docs/PROGRESS.md)
 
 ![Utility](docs/images/Utility.png "Utility")
+![Info](docs/images/Info.png "Info")
 
 ## src
 
