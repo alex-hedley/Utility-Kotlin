@@ -44,6 +44,7 @@ import com.alexhedley.components.GuidView
 import com.alexhedley.components.HexToDecView
 import com.alexhedley.components.HTMLEncodeDecode
 import com.alexhedley.components.HexToRgbView
+import com.alexhedley.components.JWTDebuggerView
 import com.alexhedley.components.LuhnChecker
 import com.alexhedley.components.MD5View
 import com.alexhedley.components.MemoryConverterView
@@ -108,7 +109,8 @@ fun MainApp() {
         Component(16, "MD5", "", Icons.Default.Security, onClick = { selectedNavItem = 16 }, Unit), //MD5View()),
         Component(17, "Luhn Checker", "", Icons.Default.Security, onClick = { selectedNavItem = 17 }, Unit), //LuhnChecker()),
         Component(18, "Unicode", "", Icons.Default.Abc, onClick = { selectedNavItem = 18 }, Unit), //UnicodeView()),
-        Component(19, "Regex", "", Icons.Default.Abc, onClick = { selectedNavItem = 19 }, Unit) //RegexView()),
+        Component(19, "Regex", "", Icons.Default.Abc, onClick = { selectedNavItem = 19 }, Unit), //RegexView()),
+        Component(20, "JWT Debugger", "", Icons.Default.Code, onClick = { selectedNavItem = 20 }, Unit) //JWTDebuggerView()),
     )
 
     var isDialogOpen by remember { mutableStateOf(false) }
@@ -216,6 +218,7 @@ fun MainApp() {
                         17 -> LuhnChecker()
                         18 -> UnicodeView()
                         19 -> RegexView()
+                        20 -> JWTDebuggerView()
                         else -> App()
 //                        else -> components[selectedNavItem].view
                     }
