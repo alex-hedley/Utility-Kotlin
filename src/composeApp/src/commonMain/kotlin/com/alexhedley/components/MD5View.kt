@@ -42,7 +42,6 @@ fun MD5View() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("MD5 Converter", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -84,11 +83,9 @@ fun MD5View() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = md5(input)
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Convert")
                     }

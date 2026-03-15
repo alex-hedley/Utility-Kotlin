@@ -9,9 +9,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.DoubleArrow
-import androidx.compose.material.icons.filled.KeyboardDoubleArrowLeft
-import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -44,7 +43,6 @@ fun BinaryView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Binary", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -54,7 +52,7 @@ fun BinaryView() {
 
             Spacer(modifier = Modifier.size(30.dp))
 
-            // Input
+            // Input (Binary)
             Row() {
                 Column() {
                     TextField(
@@ -70,9 +68,12 @@ fun BinaryView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                // Binary → Text: decode binary string to readable text
+                                output = input.trim()
+                                    .split(Regex("\\s+"))
+                                    .filter { it.isNotBlank() }
+                                    .map { it.toInt(2).toChar() }
+                                    .joinToString("")
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -80,7 +81,7 @@ fun BinaryView() {
                         },
                     ) {
                         Icon(
-                            imageVector = Icons.Default.KeyboardDoubleArrowLeft,
+                            imageVector = Icons.Default.KeyboardDoubleArrowDown,
                             contentDescription = null,
                             modifier = Modifier.size(20.dp)
                         )
@@ -115,7 +116,7 @@ fun BinaryView() {
                 }
             }
 
-            // Output
+            // Output (Text)
             Row() {
                 Column() {
                     TextField(
@@ -131,9 +132,10 @@ fun BinaryView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                // Text → Binary: encode text to binary string
+                                input = output.map { char ->
+                                    char.code.toString(2).padStart(8, '0')
+                                }.joinToString(" ")
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -141,7 +143,7 @@ fun BinaryView() {
                         },
                     ) {
                         Icon(
-                            imageVector = Icons.Default.KeyboardDoubleArrowLeft,
+                            imageVector = Icons.Default.KeyboardDoubleArrowUp,
                             contentDescription = null,
                             modifier = Modifier.size(20.dp)
                         )

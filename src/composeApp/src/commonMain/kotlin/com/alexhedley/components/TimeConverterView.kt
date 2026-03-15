@@ -42,7 +42,6 @@ fun TimeConverterView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Time Converter", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -83,11 +82,21 @@ fun TimeConverterView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            try {
+                                textErrorValue = ""
+                                val totalSeconds = input.trim().toLong()
+                                val hours = totalSeconds / 3600
+                                val minutes = (totalSeconds % 3600) / 60
+                                val seconds = totalSeconds % 60
+                                output = "${hours.toString().padStart(2, '0')}:" +
+                                    "${minutes.toString().padStart(2, '0')}:" +
+                                    "${seconds.toString().padStart(2, '0')}:000"
+                            } catch (e: Exception) {
+                                println("Error: $e")
+                                textErrorValue = e.message.toString()
+                            }
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Convert")
                     }

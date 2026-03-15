@@ -44,7 +44,6 @@ fun SQLContainsView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Contains Clause", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -139,11 +138,13 @@ fun SQLContainsView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = if (wildcard) {
+                                "CONTAINS($field, '\"$input*\"')"
+                            } else {
+                                "CONTAINS($field, '\"$input\"')"
+                            }
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Build")
                     }

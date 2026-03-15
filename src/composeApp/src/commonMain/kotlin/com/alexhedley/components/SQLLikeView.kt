@@ -42,7 +42,6 @@ fun SQLLikeView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("LIKE Clause", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -124,11 +123,9 @@ fun SQLLikeView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = "$field LIKE '%$input%'"
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Build")
                     }

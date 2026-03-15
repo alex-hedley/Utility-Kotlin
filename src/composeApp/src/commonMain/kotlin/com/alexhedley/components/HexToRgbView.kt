@@ -37,7 +37,6 @@ fun HexToRgbView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("HEX to RGB", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -64,7 +63,12 @@ fun HexToRgbView() {
                             try {
                                 textErrorValue = ""
 
-                                // TODO
+                                // Parse the hex color code
+                                val hex = input.trim().removePrefix("#")
+                                require(hex.length == 6) { "Hex color must be 6 characters (e.g. ff6a00)" }
+                                red = hex.substring(0, 2).toInt(16).toString()
+                                green = hex.substring(2, 4).toInt(16).toString()
+                                blue = hex.substring(4, 6).toInt(16).toString()
 
                             } catch (e:Exception) {
                                 println("Error: $e")

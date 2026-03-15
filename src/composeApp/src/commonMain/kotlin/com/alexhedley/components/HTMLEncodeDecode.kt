@@ -48,7 +48,6 @@ fun HTMLEncodeDecode() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("HTML Encode/Decode", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -74,9 +73,13 @@ fun HTMLEncodeDecode() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                // Decode HTML entities from input → plain HTML into output
+                                output = input
+                                    .replace("&lt;", "<")
+                                    .replace("&gt;", ">")
+                                    .replace("&quot;", "\"")
+                                    .replace("&#39;", "'")
+                                    .replace("&amp;", "&")
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -135,9 +138,13 @@ fun HTMLEncodeDecode() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                // Encode plain HTML from output → HTML entities into input
+                                input = output
+                                    .replace("&", "&amp;")
+                                    .replace("<", "&lt;")
+                                    .replace(">", "&gt;")
+                                    .replace("\"", "&quot;")
+                                    .replace("'", "&#39;")
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

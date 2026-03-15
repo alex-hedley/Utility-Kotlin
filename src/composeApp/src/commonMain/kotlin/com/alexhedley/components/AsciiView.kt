@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AsciiView() {
     var input by remember { mutableStateOf("") }
+    var output by remember { mutableStateOf("") }
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -39,7 +40,6 @@ fun AsciiView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Ascii", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -55,15 +55,18 @@ fun AsciiView() {
                     TextField(
                         input,
                         onValueChange = { input = it },
-                        placeholder = { "Type in the value you wish to convert..." },
+                        placeholder = { Text("Type in the value you wish to convert...") },
                         label = { Text("Character") },
                     )
                 }
                 Column() {
                     Button(
                         onClick = {
+                            output = input.map { c ->
+                                "${c} = ${c.code}"
+                            }.joinToString("\n")
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Get ASCII Values")
                     }
@@ -73,7 +76,13 @@ fun AsciiView() {
             // Output
             Row() {
                 Column() {
-                    // Table
+                    TextField(
+                        output,
+                        onValueChange = { output = it },
+                        label = { Text("ASCII Values") },
+                        singleLine = false,
+                        readOnly = true,
+                    )
                 }
 
             }

@@ -41,7 +41,6 @@ fun RemoveWhitespaceView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Remove Whitespace", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -83,10 +82,7 @@ fun RemoveWhitespaceView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-                            output = input.replace(" ", "")
-
+                            output = input.replace(Regex("\\s+"), "")
                         },
                         enabled = true
                     ){

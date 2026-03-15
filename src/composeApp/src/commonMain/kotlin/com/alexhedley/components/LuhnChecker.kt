@@ -42,7 +42,6 @@ fun LuhnChecker() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Luhn Checker", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -83,13 +82,27 @@ fun LuhnChecker() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            val digits = input.filter { it.isDigit() }
+                            if (digits.isEmpty()) {
+                                output = "Invalid: no digits found"
+                            } else {
+                                var sum = 0
+                                var isEven = false
+                                for (i in digits.indices.reversed()) {
+                                    var digit = digits[i] - '0'
+                                    if (isEven) {
+                                        digit *= 2
+                                        if (digit > 9) digit -= 9
+                                    }
+                                    sum += digit
+                                    isEven = !isEven
+                                }
+                                output = if (sum % 10 == 0) "Valid" else "Invalid"
+                            }
                         },
-                        enabled = false
+                        enabled = true
                     ){
-                        Text("Convert")
+                        Text("Check")
                     }
                 }
             }

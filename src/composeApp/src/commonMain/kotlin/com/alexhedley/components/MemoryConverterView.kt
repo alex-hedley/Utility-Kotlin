@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
@@ -25,12 +24,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import kotlin.math.round
+
+private fun formatBytes(bytes: Double, divisor: Double): String {
+    val value = bytes / divisor
+    val rounded = round(value * 10000.0) / 10000.0
+    return rounded.toString()
+}
 
 @Composable
 fun MemoryConverterView() {
     val defaultValue = "1030";
     var input by remember { mutableStateOf(defaultValue) }
-    var output by remember { mutableStateOf("") }
+    var kb by remember { mutableStateOf("") }
+    var mb by remember { mutableStateOf("") }
+    var gb by remember { mutableStateOf("") }
+    var tb by remember { mutableStateOf("") }
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -42,7 +51,6 @@ fun MemoryConverterView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Memory Converter", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -57,9 +65,9 @@ fun MemoryConverterView() {
                     TextField(
                         input,
                         onValueChange = { input = it },
-                        placeholder = { "Type in the memory amount you wish to convert..." },
-                        label = { Text("Input") },
-                        singleLine = false,
+                        placeholder = { "Type in the memory amount in bytes..." },
+                        label = { Text("Bytes") },
+                        singleLine = true,
                     )
                 }
                 Column() {
@@ -83,11 +91,19 @@ fun MemoryConverterView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            try {
+                                textErrorValue = ""
+                                val bytes = input.trim().toDouble()
+                                kb = formatBytes(bytes, 1024.0)
+                                mb = formatBytes(bytes, 1024.0 * 1024.0)
+                                gb = formatBytes(bytes, 1024.0 * 1024.0 * 1024.0)
+                                tb = formatBytes(bytes, 1024.0 * 1024.0 * 1024.0 * 1024.0)
+                            } catch (e: Exception) {
+                                println("Error: $e")
+                                textErrorValue = e.message.toString()
+                            }
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Convert")
                     }
@@ -98,24 +114,45 @@ fun MemoryConverterView() {
             Row() {
                 Column() {
                     TextField(
-                        output,
-                        onValueChange = { output = it },
-                        placeholder = { "Total" },
-                        label = { Text("1.0 KB") },
-                        singleLine = false,
+                        kb,
+                        onValueChange = { },
+                        label = { Text("Kilobytes (KB)") },
+                        singleLine = true,
+                        readOnly = true,
                     )
                 }
+            }
+            Row() {
                 Column() {
-                    IconButton(
-                        onClick = {  },
-                        enabled = false,
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.CopyAll,
-                            contentDescription = null,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
+                    TextField(
+                        mb,
+                        onValueChange = { },
+                        label = { Text("Megabytes (MB)") },
+                        singleLine = true,
+                        readOnly = true,
+                    )
+                }
+            }
+            Row() {
+                Column() {
+                    TextField(
+                        gb,
+                        onValueChange = { },
+                        label = { Text("Gigabytes (GB)") },
+                        singleLine = true,
+                        readOnly = true,
+                    )
+                }
+            }
+            Row() {
+                Column() {
+                    TextField(
+                        tb,
+                        onValueChange = { },
+                        label = { Text("Terabytes (TB)") },
+                        singleLine = true,
+                        readOnly = true,
+                    )
                 }
             }
         }

@@ -25,8 +25,59 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
-//import java.net.URLEncoder
-//import java.net.URLDecoder
+private fun urlEncode(s: String): String = buildString {
+    for (c in s) {
+        when {
+            c.isLetterOrDigit() || c == '-' || c == '_' || c == '.' || c == '~' -> append(c)
+            c == ' ' -> append('+')
+            else -> {
+                for (b in c.toString().encodeToByteArray()) {
+                    append('%')
+                    append((b.toInt() and 0xFF).toString(16).uppercase().padStart(2, '0'))
+                }
+            }
+        }
+    }
+}
+
+private fun urlDecode(s: String): String {
+    val bytes = mutableListOf<Byte>()
+    var i = 0
+    val result = StringBuilder()
+    while (i < s.length) {
+        when {
+            s[i] == '%' && i + 2 < s.length -> {
+                bytes.add(s.substring(i + 1, i + 3).toInt(16).toByte())
+                i += 3
+                // Peek: if the next char is also a percent-encoded byte, keep accumulating
+                if (i >= s.length || s[i] != '%') {
+                    result.append(bytes.toByteArray().decodeToString())
+                    bytes.clear()
+                }
+            }
+            s[i] == '+' -> {
+                if (bytes.isNotEmpty()) {
+                    result.append(bytes.toByteArray().decodeToString())
+                    bytes.clear()
+                }
+                result.append(' ')
+                i++
+            }
+            else -> {
+                if (bytes.isNotEmpty()) {
+                    result.append(bytes.toByteArray().decodeToString())
+                    bytes.clear()
+                }
+                result.append(s[i])
+                i++
+            }
+        }
+    }
+    if (bytes.isNotEmpty()) {
+        result.append(bytes.toByteArray().decodeToString())
+    }
+    return result.toString()
+}
 
 @Composable
 fun UrlEncodeView() {
@@ -43,7 +94,6 @@ fun UrlEncodeView() {
         ) {
             Text("URL Encode/Decode", style = MaterialTheme.typography.titleLarge)
 
-            Text(text = "WIP", color = Color.Red)
             Spacer(modifier = Modifier.size(30.dp))
 
             Row()
@@ -59,8 +109,7 @@ fun UrlEncodeView() {
                 Column() {
                     Button(
                         onClick = {
-//                    durl = URLEncoder.encode(url, "utf-8")
-                            durl = "<Encoded>"
+                            durl = urlEncode(url)
                         }
                     ){
                         Text("Encode")
@@ -81,8 +130,7 @@ fun UrlEncodeView() {
                 Column() {
                     Button(
                         onClick = {
-//                    url = URLDecoder.decode(durl, "utf-8")
-                            url = "<Decoded>"
+                            url = urlDecode(durl)
                         }
                     ){
                         Text("Decode")
@@ -91,8 +139,6 @@ fun UrlEncodeView() {
             }
 
             Spacer(modifier = Modifier.size(30.dp))
-
-//            Text("Inspired from <a href=\"https://meyerweb.com/eric/tools/dencoder/\" target=\"_blank\">meyerweb URL Decoder/Encoder</a>")
 
             Text(
                 buildAnnotatedString {
