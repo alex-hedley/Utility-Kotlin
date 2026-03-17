@@ -1,7 +1,6 @@
 package com.alexhedley.components
 
-import kotlin.js.JsFun
-
+@OptIn(ExperimentalWasmJsInterop::class)
 @JsFun("() => Date.now()")
 private external fun jsDateNow(): Double
 
