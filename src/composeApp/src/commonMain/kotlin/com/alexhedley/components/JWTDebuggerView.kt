@@ -3,10 +3,7 @@ package com.alexhedley.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
@@ -55,14 +52,12 @@ fun JWTDebuggerView() {
     var signatureRaw by remember { mutableStateOf("") }
     var textErrorValue by remember { mutableStateOf("") }
 
-    MaterialTheme {
-        Column(
+    Column(
             modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .fillMaxWidth()
+                .padding(16.dp),
         ) {
-            Text("JWT Debugger", style = MaterialTheme.typography.titleLarge)
+            Text("🔑 JWT Debugger", style = MaterialTheme.typography.titleLarge)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -202,6 +197,4 @@ fun JWTDebuggerView() {
                 )
             }
         }
-
-    }
 }

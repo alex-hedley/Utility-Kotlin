@@ -3,8 +3,8 @@ package com.alexhedley.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,14 +22,12 @@ import androidx.compose.ui.unit.dp
 fun UnicodeView() {
     var textErrorValue by remember { mutableStateOf("") }
 
-    MaterialTheme {
-        Column(
+    Column(
             modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .fillMaxWidth()
+                .padding(16.dp),
         ) {
-            Text("Unicode Characters", style = MaterialTheme.typography.titleLarge)
+            Text("🌐 Unicode", style = MaterialTheme.typography.titleLarge)
             Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
@@ -42,6 +40,4 @@ fun UnicodeView() {
 
             Text("Loop all the characters")
         }
-    }
-
 }
