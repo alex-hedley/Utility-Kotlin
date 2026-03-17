@@ -46,7 +46,6 @@ fun GuidView() {
         ) {
             Text("Guids", style = MaterialTheme.typography.titleLarge)
 
-            Text(text = "WIP", color = Color.Red)
             Spacer(modifier = Modifier.size(30.dp))
 
             Row() {

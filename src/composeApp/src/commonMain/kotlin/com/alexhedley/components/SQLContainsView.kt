@@ -27,6 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun buildSqlContains(field: String, input: String, wildcard: Boolean): String =
+    if (wildcard) "CONTAINS($field, '\"$input*\"')" else "CONTAINS($field, '\"$input\"')"
+
 @Composable
 fun SQLContainsView() {
     var field by remember { mutableStateOf("") }
@@ -44,7 +47,6 @@ fun SQLContainsView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Contains Clause", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -139,11 +141,9 @@ fun SQLContainsView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = buildSqlContains(field, input, wildcard)
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Build")
                     }

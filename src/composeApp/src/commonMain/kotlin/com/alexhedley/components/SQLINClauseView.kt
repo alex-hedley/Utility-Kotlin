@@ -29,10 +29,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun buildSqlInClause(input: String, wrapper: String, removeDuplicates: Boolean): String {
+    val items = input.lines()
+        .flatMap { it.split(",") }
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
+    val processed = if (removeDuplicates) items.distinct() else items
+    return processed.joinToString(", ") { "$wrapper$it$wrapper" }.let { "($it)" }
+}
+
 @Composable
 fun SQLINClauseView() {
     var input by remember { mutableStateOf("") }
     var output by remember { mutableStateOf("") }
+    var wrapper by remember { mutableStateOf("'") }
+    var removeDuplicates by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
 
     var textErrorValue by remember { mutableStateOf("") }
@@ -45,7 +56,6 @@ fun SQLINClauseView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("IN Clause", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -87,20 +97,39 @@ fun SQLINClauseView() {
             Row() {
                 Column() {
                     Text(text = "Wrapper:")
+                    Button(onClick = { expanded = true }) {
+                        Text(text = wrapper)
+                    }
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
                     ) {
                         DropdownMenuItem(
                             text = { Text("'") },
-                            onClick = {}
+                            onClick = { wrapper = "'"; expanded = false }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("\"") },
+                            onClick = { wrapper = "\""; expanded = false }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("(none)") },
+                            onClick = { wrapper = ""; expanded = false }
                         )
                     }
                 }
                 Column() {
                     Button(
-                        onClick = {},
-                        enabled = false
+                        onClick = {
+                            try {
+                                textErrorValue = ""
+                                output = buildSqlInClause(input, wrapper, removeDuplicates)
+                            } catch (e: Exception) {
+                                println("Error: $e")
+                                textErrorValue = e.message.toString()
+                            }
+                        },
+                        enabled = true
                     ){
                         Text("Parse")
                     }
@@ -110,8 +139,8 @@ fun SQLINClauseView() {
             // Remove Duplicates
             Row() {
                 Checkbox(
-                    checked = false,
-                    onCheckedChange = {},
+                    checked = removeDuplicates,
+                    onCheckedChange = { removeDuplicates = it },
                 )
                 Text(text = "Remove Duplicates")
             }

@@ -32,10 +32,27 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+
+internal fun addBase64Padding(s: String): String {
+    val padLength = (4 - s.length % 4) % 4
+    return s + "=".repeat(padLength)
+}
+
+@OptIn(ExperimentalEncodingApi::class)
+internal fun decodeBase64Url(s: String): String {
+    val padded = addBase64Padding(s.replace('-', '+').replace('_', '/'))
+    return Base64.Default.decode(padded).decodeToString()
+}
 
 @Composable
 fun JWTDebuggerView() {
 
+    var token by remember { mutableStateOf("") }
+    var headerDecoded by remember { mutableStateOf("") }
+    var payloadDecoded by remember { mutableStateOf("") }
+    var signatureRaw by remember { mutableStateOf("") }
     var textErrorValue by remember { mutableStateOf("") }
 
     MaterialTheme {
@@ -46,7 +63,6 @@ fun JWTDebuggerView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("JWT Debugger", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -60,7 +76,7 @@ fun JWTDebuggerView() {
                 TextField(
                     "HS256",
                     onValueChange = { },
-                    placeholder = { "" },
+                    placeholder = { },
                     label = { Text("Algorithm") },
                     singleLine = true,
                     readOnly = true
@@ -69,9 +85,9 @@ fun JWTDebuggerView() {
             Row() {
                 Column() {
                     TextField(
-                        "",
-                        onValueChange = { },
-                        placeholder = { "" },
+                        token,
+                        onValueChange = { token = it },
+                        placeholder = { Text("Paste JWT token here...") },
                         label = { Text("Token") },
                         singleLine = false,
                         minLines = 3,
@@ -85,7 +101,17 @@ fun JWTDebuggerView() {
                 Column() {
                     IconButton(
                         onClick = {
-                            // TODO
+                            try {
+                                textErrorValue = ""
+                                val parts = token.trim().split(".")
+                                require(parts.size == 3) { "Invalid JWT: expected 3 parts separated by '.'" }
+                                headerDecoded = decodeBase64Url(parts[0])
+                                payloadDecoded = decodeBase64Url(parts[1])
+                                signatureRaw = parts[2]
+                            } catch (e: Exception) {
+                                println("Error: $e")
+                                textErrorValue = e.message.toString()
+                            }
                         }
                     ) {
                         Icon(
@@ -96,7 +122,11 @@ fun JWTDebuggerView() {
                     }
                     IconButton(
                         onClick = {
-                            // TODO
+                            token = ""
+                            headerDecoded = ""
+                            payloadDecoded = ""
+                            signatureRaw = ""
+                            textErrorValue = ""
                         },
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = Color.White,
@@ -112,39 +142,42 @@ fun JWTDebuggerView() {
                 }
                 Column() {
                     TextField(
-                        "",
+                        headerDecoded,
                         onValueChange = { },
-                        placeholder = { "DECODED" },
+                        placeholder = { Text("DECODED") },
                         label = { Text("HEADER: ALGORITHM & TOKEN TYPE") },
                         singleLine = false,
                         minLines = 3,
                         maxLines = 3,
+                        readOnly = true,
                         modifier = Modifier
 //                            .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(16.dp)
                     )
                     TextField(
-                        "",
+                        payloadDecoded,
                         onValueChange = { },
-                        placeholder = { "DECODED" },
+                        placeholder = { Text("DECODED") },
                         label = { Text("PAYLOAD: DATA") },
                         singleLine = false,
                         minLines = 3,
                         maxLines = 3,
+                        readOnly = true,
                         modifier = Modifier
 //                            .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(16.dp)
                     )
                     TextField(
-                        "",
+                        signatureRaw,
                         onValueChange = { },
-                        placeholder = { "DECODED" },
+                        placeholder = { Text("SIGNATURE") },
                         label = { Text("VERIFY SIGNATURE") },
                         singleLine = false,
                         minLines = 3,
                         maxLines = 3,
+                        readOnly = true,
                         modifier = Modifier
 //                            .fillMaxWidth()
                             .wrapContentHeight()

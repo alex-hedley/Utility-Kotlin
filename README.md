@@ -16,6 +16,26 @@
 
 ## Features
 
+
+| Component | Example Input → Output |
+|-----------|----------------------|
+| **Remove Whitespace** | `h e l l o   w o r l d` → `helloworld` |
+| **String Converter** | `Hello World` → `Hello world` (Sentence case selected) |
+| **HEX to RGB** | `#ff6a00` → R: 255, G: 106, B: 0 (with colour swatch) |
+| **HTML Encode/Decode** | `&lt;h1&gt;Hello&lt;/h1&gt;` ⇄ `<h1>Hello</h1>` |
+| **Memory Converter** | `1073741824` bytes → KB: 1048576.0 / MB: 1024.0 / GB: 1.0 / TB: 0.001 |
+| **Time Converter** | `3661` seconds → `01:01:01:000` |
+| **Luhn Checker** | `4532015112830366` → **Valid** |
+| **Binary** | `01101000 01100101...` ↓ `hello` / `hello` ↑ binary |
+| **SQL LIKE** | Field: `FirstName`, Value: `Alex` → `FirstName LIKE '%Alex%'` |
+| **SQL CONTAINS** | Field: `FirstName`, Value: `Alex` → `CONTAINS(FirstName, '"Alex"')` |
+| **SQL IN Clause** | `Alice\nBob\nCharlie` → `('Alice', 'Bob', 'Charlie')` |
+| **JWT Debugger** | Token → decoded HEADER: `{"alg":"HS256","typ":"JWT"}`, PAYLOAD: `{"sub":"1234567890"}` |
+| **Epoch Converter** | `1700000000` → `GMT: 2023-11-14 22:13:20 UTC` |
+| **MD5** | `hello world` → `5eb63bbbe01eeed093cb22bb8f5acdc3` |
+| **ASCII** | `Hi!` → `H = 72`, `i = 105`, `! = 33` |
+| **URL Encode/Decode** | `https://example.com/path?q=hello world` ⇄ `https%3A%2F%2F...` |
+
 - Duration Parser
 <!-- - HTML Encode/Decode #8 -->
 - URL Encode #9

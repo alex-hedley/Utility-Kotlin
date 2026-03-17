@@ -26,6 +26,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun luhnCheck(input: String): String {
+    val digits = input.filter { it.isDigit() }
+    if (digits.isEmpty()) return "Invalid: no digits found"
+    var sum = 0
+    var isEven = false
+    for (i in digits.indices.reversed()) {
+        var digit = digits[i] - '0'
+        if (isEven) {
+            digit *= 2
+            if (digit > 9) digit -= 9
+        }
+        sum += digit
+        isEven = !isEven
+    }
+    return if (sum % 10 == 0) "Valid" else "Invalid"
+}
+
 @Composable
 fun LuhnChecker() {
     val defaultValue = "";
@@ -42,7 +59,6 @@ fun LuhnChecker() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Luhn Checker", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -83,13 +99,11 @@ fun LuhnChecker() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = luhnCheck(input)
                         },
-                        enabled = false
+                        enabled = true
                     ){
-                        Text("Convert")
+                        Text("Check")
                     }
                 }
             }

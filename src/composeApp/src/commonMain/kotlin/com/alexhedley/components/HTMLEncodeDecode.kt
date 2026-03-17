@@ -32,6 +32,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 
+internal fun htmlDecode(input: String): String = input
+    .replace("&lt;", "<")
+    .replace("&gt;", ">")
+    .replace("&quot;", "\"")
+    .replace("&#39;", "'")
+    .replace("&amp;", "&")
+
+internal fun htmlEncode(input: String): String = input
+    .replace("&", "&amp;")
+    .replace("<", "&lt;")
+    .replace(">", "&gt;")
+    .replace("\"", "&quot;")
+    .replace("'", "&#39;")
+
 @Composable
 fun HTMLEncodeDecode() {
     val defaultValue = "&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;";
@@ -48,7 +62,6 @@ fun HTMLEncodeDecode() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("HTML Encode/Decode", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -74,9 +87,7 @@ fun HTMLEncodeDecode() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                output = htmlDecode(input)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -135,9 +146,7 @@ fun HTMLEncodeDecode() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // TODO
-
+                                input = htmlEncode(output)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

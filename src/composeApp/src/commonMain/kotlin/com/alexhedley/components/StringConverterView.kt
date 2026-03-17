@@ -29,6 +29,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun convertString(input: String, option: String): String = when (option) {
+    "Sentence case" -> input.lowercase().replaceFirstChar { it.uppercaseChar() }
+    "lower case" -> input.lowercase()
+    "UPPER CASE" -> input.uppercase()
+    "Capitalized Case" -> input.split(" ").joinToString(" ") { word ->
+        word.lowercase().replaceFirstChar { it.uppercaseChar() }
+    }
+    "aLtErNaTiNg cAsE" -> input.mapIndexed { index, c ->
+        if (index % 2 == 0) c.lowercaseChar() else c.uppercaseChar()
+    }.joinToString("")
+    "Title Case" -> input.split(" ").joinToString(" ") { word ->
+        word.lowercase().replaceFirstChar { it.uppercaseChar() }
+    }
+    "InVeRsE CaSe" -> input.map { c ->
+        if (c.isUpperCase()) c.lowercaseChar() else c.uppercaseChar()
+    }.joinToString("")
+    else -> input
+}
+
 @Composable
 fun StringConverterView() {
     var input by remember { mutableStateOf("") }
@@ -55,7 +74,6 @@ fun StringConverterView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("String Converter", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -131,11 +149,9 @@ fun StringConverterView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-
+                            output = convertString(input, selectedOption)
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Convert")
                     }

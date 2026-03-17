@@ -25,9 +25,14 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
+internal fun toAsciiValues(input: String): String = input.map { c ->
+    "$c = ${c.code}"
+}.joinToString("\n")
+
 @Composable
 fun AsciiView() {
     var input by remember { mutableStateOf("") }
+    var output by remember { mutableStateOf("") }
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -39,7 +44,6 @@ fun AsciiView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Ascii", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -55,15 +59,16 @@ fun AsciiView() {
                     TextField(
                         input,
                         onValueChange = { input = it },
-                        placeholder = { "Type in the value you wish to convert..." },
+                        placeholder = { Text("Type in the value you wish to convert...") },
                         label = { Text("Character") },
                     )
                 }
                 Column() {
                     Button(
                         onClick = {
+                            output = toAsciiValues(input)
                         },
-                        enabled = false
+                        enabled = true
                     ){
                         Text("Get ASCII Values")
                     }
@@ -73,7 +78,13 @@ fun AsciiView() {
             // Output
             Row() {
                 Column() {
-                    // Table
+                    TextField(
+                        output,
+                        onValueChange = { output = it },
+                        label = { Text("ASCII Values") },
+                        singleLine = false,
+                        readOnly = true,
+                    )
                 }
 
             }

@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun removeWhitespace(input: String): String = input.replace(Regex("\\s+"), "")
+
 @Composable
 fun RemoveWhitespaceView() {
     var input by remember { mutableStateOf("") }
@@ -41,7 +43,6 @@ fun RemoveWhitespaceView() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text("Remove Whitespace", style = MaterialTheme.typography.titleLarge)
-            Text(text = "WIP", color = Color.Red)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -83,10 +84,7 @@ fun RemoveWhitespaceView() {
                 Column() {
                     Button(
                         onClick = {
-
-                            // TODO
-                            output = input.replace(" ", "")
-
+                            output = removeWhitespace(input)
                         },
                         enabled = true
                     ){
