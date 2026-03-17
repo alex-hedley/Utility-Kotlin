@@ -22,15 +22,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalUuidApi::class)
 @Composable
 fun GuidView() {
     val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
     var guid by remember { mutableStateOf("") }
     guid = Uuid.random().toString()
     var guidZero by remember { mutableStateOf("00000000-0000-0000-0000-000000000000") }
@@ -67,24 +71,9 @@ fun GuidView() {
                 Column() {
                     IconButton(
                         onClick = {
-                            // https://youtrack.jetbrains.com/issue/CMP-7624
-//                            clipboard.setText(AnnotatedString((guid)))
-//                            clipboard.getText()?.text?.let {
-//                                guid = it
-//                            }
+                            coroutineScope.launch { clipboard.setText(AnnotatedString(guidZero)) }
                         },
-                        enabled = false,
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.CopyAll,
-                            contentDescription = null,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-            }
-
-            Row() {
                 Column() {
                     TextField(
                         guid,
@@ -113,13 +102,8 @@ fun GuidView() {
                 Column() {
                     IconButton(
                         onClick = {
-                            // https://youtrack.jetbrains.com/issue/CMP-7624
-//                            clipboard.setText(AnnotatedString((guid)))
-//                            clipboard.getText()?.text?.let {
-//                                guid = it
-//                            }
+                            coroutineScope.launch { clipboard.setText(AnnotatedString(guid)) }
                         },
-                        enabled = false,
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

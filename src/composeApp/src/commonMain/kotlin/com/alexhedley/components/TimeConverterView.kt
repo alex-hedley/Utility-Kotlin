@@ -20,11 +20,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 internal fun secondsToHms(totalSeconds: Long): String {
     val hours = totalSeconds / 3600
@@ -40,6 +44,9 @@ fun TimeConverterView() {
     val defaultValue = "60";
     var input by remember { mutableStateOf(defaultValue) }
     var output by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -120,8 +127,7 @@ fun TimeConverterView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(output)) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

@@ -21,11 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 internal fun binaryToText(input: String): String = input.trim()
     .split(Regex("\\s+"))
@@ -42,6 +46,9 @@ fun BinaryView() {
     val defaultValue = "01101111 01101110 01100101 00100000 01101100 01101001 01101110 01100101";
     var input by remember { mutableStateOf(defaultValue) }
     var output by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -94,8 +101,7 @@ fun BinaryView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(input)) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -153,8 +159,7 @@ fun BinaryView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(output)) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

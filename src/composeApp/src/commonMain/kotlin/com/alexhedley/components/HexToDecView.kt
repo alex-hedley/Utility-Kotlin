@@ -22,18 +22,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalUnsignedTypes::class)
 @Composable
 fun HexToDecView() {
     var hex by remember { mutableStateOf("12") }
     var dec by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -86,8 +93,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(hex)) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -145,8 +151,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(dec)) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
