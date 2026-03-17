@@ -25,7 +25,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
-private fun urlEncode(s: String): String = buildString {
+internal fun urlEncode(s: String): String = buildString {
     for (c in s) {
         when {
             c.isLetterOrDigit() || c == '-' || c == '_' || c == '.' || c == '~' -> append(c)
@@ -40,7 +40,7 @@ private fun urlEncode(s: String): String = buildString {
     }
 }
 
-private fun urlDecode(s: String): String {
+internal fun urlDecode(s: String): String {
     val bytes = mutableListOf<Byte>()
     var i = 0
     val result = StringBuilder()

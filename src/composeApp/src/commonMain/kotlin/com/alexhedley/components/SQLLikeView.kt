@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun buildSqlLike(field: String, input: String): String = "$field LIKE '%$input%'"
+
 @Composable
 fun SQLLikeView() {
     var field by remember { mutableStateOf("") }
@@ -123,7 +125,7 @@ fun SQLLikeView() {
                 Column() {
                     Button(
                         onClick = {
-                            output = "$field LIKE '%$input%'"
+                            output = buildSqlLike(field, input)
                         },
                         enabled = true
                     ){

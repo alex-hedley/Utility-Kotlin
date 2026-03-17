@@ -27,6 +27,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun binaryToText(input: String): String = input.trim()
+    .split(Regex("\\s+"))
+    .filter { it.isNotBlank() }
+    .map { it.toInt(2).toChar() }
+    .joinToString("")
+
+internal fun textToBinary(input: String): String = input.map { char ->
+    char.code.toString(2).padStart(8, '0')
+}.joinToString(" ")
+
 @Composable
 fun BinaryView() {
     val defaultValue = "01101111 01101110 01100101 00100000 01101100 01101001 01101110 01100101";
@@ -68,12 +78,7 @@ fun BinaryView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                // Binary → Text: decode binary string to readable text
-                                output = input.trim()
-                                    .split(Regex("\\s+"))
-                                    .filter { it.isNotBlank() }
-                                    .map { it.toInt(2).toChar() }
-                                    .joinToString("")
+                                output = binaryToText(input)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -132,10 +137,7 @@ fun BinaryView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                // Text → Binary: encode text to binary string
-                                input = output.map { char ->
-                                    char.code.toString(2).padStart(8, '0')
-                                }.joinToString(" ")
+                                input = textToBinary(output)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

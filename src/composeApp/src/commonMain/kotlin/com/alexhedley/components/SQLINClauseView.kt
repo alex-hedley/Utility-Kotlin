@@ -29,6 +29,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun buildSqlInClause(input: String, wrapper: String, removeDuplicates: Boolean): String {
+    val items = input.lines()
+        .flatMap { it.split(",") }
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
+    val processed = if (removeDuplicates) items.distinct() else items
+    return processed.joinToString(", ") { "$wrapper$it$wrapper" }.let { "($it)" }
+}
+
 @Composable
 fun SQLINClauseView() {
     var input by remember { mutableStateOf("") }
@@ -114,13 +123,7 @@ fun SQLINClauseView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                val items = input.lines()
-                                    .flatMap { it.split(",") }
-                                    .map { it.trim() }
-                                    .filter { it.isNotEmpty() }
-                                val processed = if (removeDuplicates) items.distinct() else items
-                                output = processed.joinToString(", ") { "$wrapper$it$wrapper" }
-                                    .let { "($it)" }
+                                output = buildSqlInClause(input, wrapper, removeDuplicates)
                             } catch (e: Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

@@ -25,10 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-private fun isLeapYear(year: Int): Boolean =
+internal fun isLeapYear(year: Int): Boolean =
     (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
 
-private fun epochToUtcString(epochSeconds: Long): String {
+internal fun epochToUtcString(epochSeconds: Long): String {
     var remaining = epochSeconds
     val seconds = (remaining % 60).toInt()
     remaining /= 60

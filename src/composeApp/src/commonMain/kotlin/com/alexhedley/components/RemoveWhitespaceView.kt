@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun removeWhitespace(input: String): String = input.replace(Regex("\\s+"), "")
+
 @Composable
 fun RemoveWhitespaceView() {
     var input by remember { mutableStateOf("") }
@@ -82,7 +84,7 @@ fun RemoveWhitespaceView() {
                 Column() {
                     Button(
                         onClick = {
-                            output = input.replace(Regex("\\s+"), "")
+                            output = removeWhitespace(input)
                         },
                         enabled = true
                     ){

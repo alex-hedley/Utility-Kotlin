@@ -35,13 +35,13 @@ import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-private fun addBase64Padding(s: String): String {
+internal fun addBase64Padding(s: String): String {
     val padLength = (4 - s.length % 4) % 4
     return s + "=".repeat(padLength)
 }
 
 @OptIn(ExperimentalEncodingApi::class)
-private fun decodeBase64Url(s: String): String {
+internal fun decodeBase64Url(s: String): String {
     val padded = addBase64Padding(s.replace('-', '+').replace('_', '/'))
     return Base64.Default.decode(padded).decodeToString()
 }

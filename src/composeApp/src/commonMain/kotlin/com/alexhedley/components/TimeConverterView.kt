@@ -26,6 +26,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun secondsToHms(totalSeconds: Long): String {
+    val hours = totalSeconds / 3600
+    val minutes = (totalSeconds % 3600) / 60
+    val seconds = totalSeconds % 60
+    return "${hours.toString().padStart(2, '0')}:" +
+        "${minutes.toString().padStart(2, '0')}:" +
+        "${seconds.toString().padStart(2, '0')}:000"
+}
+
 @Composable
 fun TimeConverterView() {
     val defaultValue = "60";
@@ -85,12 +94,7 @@ fun TimeConverterView() {
                             try {
                                 textErrorValue = ""
                                 val totalSeconds = input.trim().toLong()
-                                val hours = totalSeconds / 3600
-                                val minutes = (totalSeconds % 3600) / 60
-                                val seconds = totalSeconds % 60
-                                output = "${hours.toString().padStart(2, '0')}:" +
-                                    "${minutes.toString().padStart(2, '0')}:" +
-                                    "${seconds.toString().padStart(2, '0')}:000"
+                                output = secondsToHms(totalSeconds)
                             } catch (e: Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

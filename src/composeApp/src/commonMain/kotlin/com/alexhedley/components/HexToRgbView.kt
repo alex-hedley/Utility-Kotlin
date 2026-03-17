@@ -20,6 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun parseHexToRgb(input: String): Triple<Int, Int, Int> {
+    val hex = input.trim().removePrefix("#")
+    require(hex.length == 6) { "Hex color must be 6 characters (e.g. ff6a00)" }
+    val r = hex.substring(0, 2).toInt(16)
+    val g = hex.substring(2, 4).toInt(16)
+    val b = hex.substring(4, 6).toInt(16)
+    return Triple(r, g, b)
+}
+
 @Composable
 fun HexToRgbView() {
     var input by remember { mutableStateOf("#ff6a00") }
@@ -62,14 +71,10 @@ fun HexToRgbView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-
-                                // Parse the hex color code
-                                val hex = input.trim().removePrefix("#")
-                                require(hex.length == 6) { "Hex color must be 6 characters (e.g. ff6a00)" }
-                                red = hex.substring(0, 2).toInt(16).toString()
-                                green = hex.substring(2, 4).toInt(16).toString()
-                                blue = hex.substring(4, 6).toInt(16).toString()
-
+                                val (r, g, b) = parseHexToRgb(input)
+                                red = r.toString()
+                                green = g.toString()
+                                blue = b.toString()
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()

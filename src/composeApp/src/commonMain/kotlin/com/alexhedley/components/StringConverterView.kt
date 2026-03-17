@@ -29,6 +29,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+internal fun convertString(input: String, option: String): String = when (option) {
+    "Sentence case" -> input.lowercase().replaceFirstChar { it.uppercaseChar() }
+    "lower case" -> input.lowercase()
+    "UPPER CASE" -> input.uppercase()
+    "Capitalized Case" -> input.split(" ").joinToString(" ") { word ->
+        word.lowercase().replaceFirstChar { it.uppercaseChar() }
+    }
+    "aLtErNaTiNg cAsE" -> input.mapIndexed { index, c ->
+        if (index % 2 == 0) c.lowercaseChar() else c.uppercaseChar()
+    }.joinToString("")
+    "Title Case" -> input.split(" ").joinToString(" ") { word ->
+        word.lowercase().replaceFirstChar { it.uppercaseChar() }
+    }
+    "InVeRsE CaSe" -> input.map { c ->
+        if (c.isUpperCase()) c.lowercaseChar() else c.uppercaseChar()
+    }.joinToString("")
+    else -> input
+}
+
 @Composable
 fun StringConverterView() {
     var input by remember { mutableStateOf("") }
@@ -130,24 +149,7 @@ fun StringConverterView() {
                 Column() {
                     Button(
                         onClick = {
-                            output = when (selectedOption) {
-                                "Sentence case" -> input.lowercase().replaceFirstChar { it.uppercaseChar() }
-                                "lower case" -> input.lowercase()
-                                "UPPER CASE" -> input.uppercase()
-                                "Capitalized Case" -> input.split(" ").joinToString(" ") { word ->
-                                    word.lowercase().replaceFirstChar { it.uppercaseChar() }
-                                }
-                                "aLtErNaTiNg cAsE" -> input.mapIndexed { index, c ->
-                                    if (index % 2 == 0) c.lowercaseChar() else c.uppercaseChar()
-                                }.joinToString("")
-                                "Title Case" -> input.split(" ").joinToString(" ") { word ->
-                                    word.lowercase().replaceFirstChar { it.uppercaseChar() }
-                                }
-                                "InVeRsE CaSe" -> input.map { c ->
-                                    if (c.isUpperCase()) c.lowercaseChar() else c.uppercaseChar()
-                                }.joinToString("")
-                                else -> input
-                            }
+                            output = convertString(input, selectedOption)
                         },
                         enabled = true
                     ){

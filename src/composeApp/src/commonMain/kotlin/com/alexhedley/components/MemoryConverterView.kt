@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlin.math.round
 
-private fun formatBytes(bytes: Double, divisor: Double): String {
+internal fun formatBytes(bytes: Double, divisor: Double): String {
     val value = bytes / divisor
     val rounded = round(value * 10000.0) / 10000.0
     return rounded.toString()

@@ -25,6 +25,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
+internal fun toAsciiValues(input: String): String = input.map { c ->
+    "$c = ${c.code}"
+}.joinToString("\n")
+
 @Composable
 fun AsciiView() {
     var input by remember { mutableStateOf("") }
@@ -62,9 +66,7 @@ fun AsciiView() {
                 Column() {
                     Button(
                         onClick = {
-                            output = input.map { c ->
-                                "${c} = ${c.code}"
-                            }.joinToString("\n")
+                            output = toAsciiValues(input)
                         },
                         enabled = true
                     ){
