@@ -21,12 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -34,7 +33,6 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 
 @Composable
 fun RegexView() {
@@ -43,8 +41,7 @@ fun RegexView() {
     var count by remember { mutableStateOf("5") }
     var output by remember { mutableStateOf("") }
 
-    val clipboard = LocalClipboard.current
-    val coroutineScope = rememberCoroutineScope()
+    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -115,7 +112,7 @@ fun RegexView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(output)) } },
+                        onClick = { clipboardManager.setText(AnnotatedString(output)) },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

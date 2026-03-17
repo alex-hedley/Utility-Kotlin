@@ -21,15 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 
 internal fun buildSqlContains(field: String, input: String, wildcard: Boolean): String =
     if (wildcard) "CONTAINS($field, '\"$input*\"')" else "CONTAINS($field, '\"$input\"')"
@@ -41,8 +39,7 @@ fun SQLContainsView() {
     var wildcard by remember { mutableStateOf(false) }
     var output by remember { mutableStateOf("") }
 
-    val clipboard = LocalClipboard.current
-    val coroutineScope = rememberCoroutineScope()
+    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -75,7 +72,7 @@ fun SQLContainsView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(field)) } },
+                        onClick = { clipboardManager.setText(AnnotatedString(field)) },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -168,7 +165,7 @@ fun SQLContainsView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { coroutineScope.launch { clipboard.setText(AnnotatedString(output)) } },
+                        onClick = { clipboardManager.setText(AnnotatedString(output)) },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
