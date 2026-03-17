@@ -10,3 +10,5 @@
 Copilot
 
 ![Design](images/Design.png "Design")
+
+![All Tools](images/AllTools.jpeg "All Tools")

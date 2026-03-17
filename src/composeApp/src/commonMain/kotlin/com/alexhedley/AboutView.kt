@@ -54,7 +54,7 @@ fun AboutView(onDismiss: () -> Unit) {
                             }
                         }
                     )
-                    Text("© 2025")
+                    Text("© 2025 - 2026")
                     Text("")
                     HorizontalDivider()
                     Text("")
