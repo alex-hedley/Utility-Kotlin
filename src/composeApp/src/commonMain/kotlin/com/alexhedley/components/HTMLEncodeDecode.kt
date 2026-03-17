@@ -29,8 +29,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 
@@ -54,7 +55,8 @@ fun HTMLEncodeDecode() {
     var input by remember { mutableStateOf(defaultValue) }
     var output by remember { mutableStateOf("") }
 
-    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -107,7 +109,7 @@ fun HTMLEncodeDecode() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { clipboardManager.setText(AnnotatedString(input)) },
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(input.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -165,7 +167,7 @@ fun HTMLEncodeDecode() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { clipboardManager.setText(AnnotatedString(output)) },
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(output.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

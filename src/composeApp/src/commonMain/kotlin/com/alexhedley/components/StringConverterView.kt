@@ -27,8 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 
 internal fun convertString(input: String, option: String): String = when (option) {
@@ -55,7 +56,8 @@ fun StringConverterView() {
     var input by remember { mutableStateOf("") }
     var output by remember { mutableStateOf("") }
 
-    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     val options = listOf(
         "Sentence case",
@@ -175,7 +177,7 @@ fun StringConverterView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { clipboardManager.setText(AnnotatedString(output)) },
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(output.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

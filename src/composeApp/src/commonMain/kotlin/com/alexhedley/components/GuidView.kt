@@ -22,8 +22,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -31,7 +32,8 @@ import kotlin.uuid.Uuid
 @OptIn(ExperimentalUuidApi::class)
 @Composable
 fun GuidView() {
-    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
     var guid by remember { mutableStateOf("") }
     guid = Uuid.random().toString()
     var guidZero by remember { mutableStateOf("00000000-0000-0000-0000-000000000000") }
@@ -68,7 +70,7 @@ fun GuidView() {
                 Column() {
                     IconButton(
                         onClick = {
-                            clipboardManager.setText(AnnotatedString(guidZero))
+                            coroutineScope.launch { clipboard.setClipEntry(guidZero.toClipEntry()) }
                         },
                     ) {
                 Column() {
@@ -99,7 +101,7 @@ fun GuidView() {
                 Column() {
                     IconButton(
                         onClick = {
-                            clipboardManager.setText(AnnotatedString(guid))
+                            coroutineScope.launch { clipboard.setClipEntry(guid.toClipEntry()) }
                         },
                     ) {
                         Icon(

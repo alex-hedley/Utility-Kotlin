@@ -26,8 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
@@ -37,7 +38,8 @@ fun HexToDecView() {
     var hex by remember { mutableStateOf("12") }
     var dec by remember { mutableStateOf("") }
 
-    @Suppress("DEPRECATION") val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -90,7 +92,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { clipboardManager.setText(AnnotatedString(hex)) },
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(hex.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -148,7 +150,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = { clipboardManager.setText(AnnotatedString(dec)) },
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(dec.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
