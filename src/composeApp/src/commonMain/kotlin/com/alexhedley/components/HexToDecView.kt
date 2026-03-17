@@ -10,7 +10,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.DoubleArrow
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowLeft
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -77,7 +78,7 @@ fun HexToDecView() {
                         },
                     ) {
                         Icon(
-                            imageVector = Icons.Default.DoubleArrow,
+                            imageVector = Icons.Default.KeyboardDoubleArrowRight,
                             contentDescription = null,
                             modifier = Modifier.size(20.dp)
                         )
@@ -136,7 +137,7 @@ fun HexToDecView() {
                         },
                     ) {
                         Icon(
-                            imageVector = Icons.Default.DoubleArrow,
+                            imageVector = Icons.Default.KeyboardDoubleArrowLeft,
                             contentDescription = null,
                             modifier = Modifier.size(20.dp)
                         )
