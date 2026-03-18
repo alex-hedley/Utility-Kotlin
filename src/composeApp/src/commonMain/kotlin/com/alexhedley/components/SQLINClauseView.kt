@@ -27,6 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 
 internal fun buildSqlInClause(input: String, wrapper: String, removeDuplicates: Boolean): String {
@@ -45,6 +48,9 @@ fun SQLINClauseView() {
     var wrapper by remember { mutableStateOf("'") }
     var removeDuplicates by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -159,8 +165,7 @@ fun SQLINClauseView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(output.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
