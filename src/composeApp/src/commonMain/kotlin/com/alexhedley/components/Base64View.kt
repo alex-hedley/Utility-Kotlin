@@ -39,6 +39,12 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 
+@OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
+internal fun base64Decode(input: String): String = Base64.Default.decode(input).decodeToString()
+
+@OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
+internal fun base64Encode(input: String): String = Base64.Default.encode(input.encodeToByteArray())
+
 @Composable
 fun Base64View() {
     var input by remember { mutableStateOf("QWxleEhlZGxleQ==") }
@@ -82,7 +88,7 @@ fun Base64View() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                output = Base64.Default.decode(input).decodeToString()
+                                output = base64Decode(input)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -140,7 +146,7 @@ fun Base64View() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                input = Base64.Default.encode(output.encodeToByteArray())
+                                input = base64Encode(output)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
