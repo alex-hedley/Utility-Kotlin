@@ -72,7 +72,8 @@ fun GuidView() {
                         onClick = {
                             coroutineScope.launch { clipboard.setClipEntry(guidZero.toClipEntry()) }
                         },
-                    ) {
+                    ) {}
+                }
                 Column() {
                     TextField(
                         guid,
@@ -113,7 +114,5 @@ fun GuidView() {
                 }
             }
         }
-
-
     }
 }
