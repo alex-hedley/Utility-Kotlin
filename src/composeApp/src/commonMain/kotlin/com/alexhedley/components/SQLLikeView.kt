@@ -24,6 +24,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.unit.dp
 
 internal fun buildSqlLike(field: String, input: String): String = "$field LIKE '%$input%'"
@@ -33,6 +36,9 @@ fun SQLLikeView() {
     var field by remember { mutableStateOf("") }
     var input by remember { mutableStateOf("") }
     var output by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -63,8 +69,7 @@ fun SQLLikeView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(field.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -144,8 +149,7 @@ fun SQLLikeView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(output.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

@@ -27,6 +27,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -35,10 +39,19 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import kotlin.io.encoding.Base64
 
+@OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
+internal fun base64Decode(input: String): String = Base64.Default.decode(input).decodeToString()
+
+@OptIn(kotlin.io.encoding.ExperimentalEncodingApi::class)
+internal fun base64Encode(input: String): String = Base64.Default.encode(input.encodeToByteArray())
+
 @Composable
 fun Base64View() {
     var input by remember { mutableStateOf("QWxleEhlZGxleQ==") }
     var output by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -73,7 +86,7 @@ fun Base64View() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                output = Base64.Default.decode(input).decodeToString()
+                                output = base64Decode(input)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -89,8 +102,7 @@ fun Base64View() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(input.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -132,7 +144,7 @@ fun Base64View() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                input = Base64.Default.encode(output.encodeToByteArray())
+                                input = base64Encode(output)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -148,8 +160,7 @@ fun Base64View() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(output.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,

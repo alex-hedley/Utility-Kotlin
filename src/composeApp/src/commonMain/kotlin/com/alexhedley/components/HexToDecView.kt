@@ -26,14 +26,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+
+internal fun hexToDec(hex: String): String = hex.toLong(16).toString()
+
+internal fun decToHex(dec: String): String = dec.toLong().toString(16)
 
 @OptIn(ExperimentalUnsignedTypes::class)
 @Composable
 fun HexToDecView() {
     var hex by remember { mutableStateOf("12") }
     var dec by remember { mutableStateOf("") }
+
+    val clipboard = LocalClipboard.current
+    val coroutineScope = rememberCoroutineScope()
 
     var textErrorValue by remember { mutableStateOf("") }
 
@@ -68,7 +78,7 @@ fun HexToDecView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                dec = hex.toLong(16).toString() // BigInteger(hex, 16)
+                                dec = hexToDec(hex)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -84,8 +94,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(hex.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
@@ -127,7 +136,7 @@ fun HexToDecView() {
                         onClick = {
                             try {
                                 textErrorValue = ""
-                                hex = dec.toByte().toHexString()
+                                hex = decToHex(dec)
                             } catch (e:Exception) {
                                 println("Error: $e")
                                 textErrorValue = e.message.toString()
@@ -143,8 +152,7 @@ fun HexToDecView() {
                 }
                 Column() {
                     IconButton(
-                        onClick = {  },
-                        enabled = false,
+                        onClick = { coroutineScope.launch { clipboard.setClipEntry(dec.toClipEntry()) } },
                     ) {
                         Icon(
                             imageVector = Icons.Default.CopyAll,
