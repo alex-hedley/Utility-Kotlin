@@ -90,7 +90,7 @@ fun MainApp() {
 
     // Components
     val components = listOf<Component>(
-        Component(0, "Applications", "", Icons.Default.Apps, { selectedNavItem = 0 }, Unit), //ComponentsView(emptyList())),
+        Component(0, "Applications", "", Icons.Default.Apps, { selectedNavItem = 0 }, Unit), //AllToolsView())
         Component(1, "Duration Parser", "", Icons.Default.Adjust, onClick = { selectedNavItem = 1 }, Unit), //DurationParserView()),
         Component(2, "URL Encode", "", Icons.Default.Code, onClick = { selectedNavItem = 2 }, Unit), //UrlEncodeView()),
         Component(3, "Guid", "", Icons.Default.Code, onClick = { selectedNavItem = 3 }, Unit), //GuidView()),
@@ -198,7 +198,7 @@ fun MainApp() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     when (selectedNavItem) {
-                        0 -> ComponentsView(components.subList(1, components.size))
+                        0 -> AllToolsView()
                         1 -> DurationParserView()
                         2 -> UrlEncodeView()
                         3 -> GuidView()

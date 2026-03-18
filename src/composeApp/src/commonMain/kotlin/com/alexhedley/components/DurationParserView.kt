@@ -1,8 +1,8 @@
 package com.alexhedley.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,30 +12,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-import kotlin.time.Duration;
+import kotlin.time.Duration
+
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun DurationParserView() {
-    MaterialTheme {
-        var durationText by remember { mutableStateOf("PT10M14.230852287S") }
+    var durationText by remember { mutableStateOf("PT10M14.230852287S") }
 
-        var textFieldDaysValue by remember { mutableStateOf("") }
-        var textFieldHoursValue by remember { mutableStateOf("") }
-        var textFieldMinutesValue by remember { mutableStateOf("") }
-        var textFieldMillisValue by remember { mutableStateOf("") }
-        var textFieldNanosValue by remember { mutableStateOf("") }
-        var textFieldSecondsValue by remember { mutableStateOf("") }
+    var textFieldDaysValue by remember { mutableStateOf("") }
+    var textFieldHoursValue by remember { mutableStateOf("") }
+    var textFieldMinutesValue by remember { mutableStateOf("") }
+    var textFieldMillisValue by remember { mutableStateOf("") }
+    var textFieldNanosValue by remember { mutableStateOf("") }
+    var textFieldSecondsValue by remember { mutableStateOf("") }
 
-        var textErrorValue by remember { mutableStateOf("") }
+    var textErrorValue by remember { mutableStateOf("") }
 
-        Column(
-            modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+    ) {
 
-            Text("Java / Kotlin Duration parser:", style = MaterialTheme.typography.titleLarge)
+        Text("⏲️ Duration Parser", style = MaterialTheme.typography.titleLarge)
 
             Text("Example: PT10M14.230852287S")
 
@@ -121,6 +121,5 @@ fun DurationParserView() {
                 readOnly = true
             )
 
-        }
     }
 }

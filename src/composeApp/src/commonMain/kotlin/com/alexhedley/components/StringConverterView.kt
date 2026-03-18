@@ -1,11 +1,11 @@
 package com.alexhedley.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CopyAll
@@ -24,7 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.rememberCoroutineScope
@@ -72,14 +71,12 @@ fun StringConverterView() {
 
     var textErrorValue by remember { mutableStateOf("") }
 
-    MaterialTheme {
-        Column(
+    Column(
             modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .fillMaxWidth()
+                .padding(16.dp),
         ) {
-            Text("String Converter", style = MaterialTheme.typography.titleLarge)
+            Text("📝 String Converter", style = MaterialTheme.typography.titleLarge)
 
             Spacer(modifier = Modifier.size(30.dp))
 
@@ -90,14 +87,12 @@ fun StringConverterView() {
             Spacer(modifier = Modifier.size(30.dp))
 
             // Option
-            Row() {
-                Text("Select an Item:", style = MaterialTheme.typography.headlineMedium)
+            FlowRow() {
                 options.forEach { option ->
                     RadioButton(
                         selected = (option == selectedOption),
                         onClick = { selectedOption = option },
                         colors = RadioButtonDefaults.colors(
-
                             selectedColor = Color(0xff00BFA5),
                             unselectedColor = Color.Gray,
                             disabledSelectedColor = Color.LightGray,
@@ -114,12 +109,6 @@ fun StringConverterView() {
                         modifier = Modifier
                             .padding(start = 8.dp)
                     )
-                }
-            }
-
-            Row() {
-                Column() {
-                    Text(text = "Selected Item: $selectedOption")
                 }
             }
 
@@ -188,6 +177,4 @@ fun StringConverterView() {
                 }
             }
         }
-
-    }
 }
